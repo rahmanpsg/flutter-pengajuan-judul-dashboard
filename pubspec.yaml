@@ -1,0 +1,44 @@
+name: pengajuan_judul_dashboard
+description: A new Flutter project.
+
+publish_to: "none"
+
+version: 1.0.0+1
+
+environment:
+  sdk: ">=2.17.6 <3.0.0"
+
+dependencies:
+  cloud_firestore: ^3.4.6
+  cupertino_icons: ^1.0.2
+  firebase_core: ^1.21.1
+  flutter:
+    sdk: flutter
+  stacked: ^2.3.15
+  stacked_services: ^0.9.5
+
+dev_dependencies:
+  build_runner: ^2.2.0
+  flutter_lints: ^2.0.0
+  flutter_test:
+    sdk: flutter
+  stacked_generator: ^0.7.15
+
+flutter:
+  uses-material-design: true
+
+  assets:
+    - assets/svg/
+    - assets/images/
+
+  fonts:
+    - family: YanoneKaffeesatz
+      fonts:
+        - asset: assets/fonts/YanoneKaffeesatz-Regular.ttf
+          weight: 400
+        - asset: assets/fonts/YanoneKaffeesatz-Medium.ttf
+          weight: 500
+        - asset: assets/fonts/YanoneKaffeesatz-SemiBold.ttf
+          weight: 600
+        - asset: assets/fonts/YanoneKaffeesatz-Bold.ttf
+          weight: 700
