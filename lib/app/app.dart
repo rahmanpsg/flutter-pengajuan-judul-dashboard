@@ -1,3 +1,5 @@
+import 'package:pengajuan_judul_dashboard/ui/views/dashboard/dashboard_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/home/home_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/sign_in/sign_in_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -5,6 +7,9 @@ import 'package:stacked_services/stacked_services.dart';
 @StackedApp(
   routes: [
     MaterialRoute(page: SignInView, initial: true),
+    MaterialRoute(page: DashboardView, children: [
+      MaterialRoute(page: HomeView, initial: true),
+    ]),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

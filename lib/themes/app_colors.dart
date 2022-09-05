@@ -13,7 +13,7 @@ const Color redColor = Color(0xFFFF0000);
 const Color greyBlueColor = Color(0xFF363F72);
 
 const Color fontColor = Color(0xFF101828);
-const Color fontSecondaryColor = Color(0xFF667085);
+const Color fontSecondaryColor = Color.fromARGB(255, 211, 211, 239);
 const Color fontParagraphColor = Color(0xFFB2B2B2);
 
 const Color mainGreyColor = Color(0xFFF5F5F5);
