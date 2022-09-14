@@ -25,9 +25,6 @@ class DashboardView extends StatelessWidget {
 
     return ViewModelBuilder<DashboardViewModel>.reactive(
       viewModelBuilder: () => DashboardViewModel(),
-      onModelReady: (DashboardViewModel model) async {
-        await model.init();
-      },
       builder: (
         BuildContext context,
         DashboardViewModel model,
@@ -104,9 +101,17 @@ class DashboardView extends StatelessWidget {
                     ),
                   ),
                 Expanded(
-                  child: ExtendedNavigator(
-                    router: DashboardViewRouter(),
-                    navigatorKey: StackedService.nestedNavigationKey(1),
+                  child: Column(
+                    children: [
+                      Expanded(
+                        child: ExtendedNavigator(
+                          router: DashboardViewRouter(),
+                          navigatorKey: StackedService.nestedNavigationKey(1),
+                        ),
+                      ),
+                      const Text("Teknik Informatika - UM Parepare © 2022"),
+                      const SizedBox(height: 16),
+                    ],
                   ),
                 ),
               ],

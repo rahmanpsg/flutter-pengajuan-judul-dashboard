@@ -1,6 +1,6 @@
 import 'package:cloud_firestore/cloud_firestore.dart';
 
-import '../../models/response_api_model.dart';
+import '../../models/api_response_model.dart';
 import '../app.logger.dart';
 
 class FirestoreApi<T> {
@@ -35,7 +35,7 @@ class FirestoreApi<T> {
     return query!.snapshots();
   }
 
-  Future<ResponseApiModel<T>> getDocument(String documentId) async {
+  Future<ApiResponseModel<T>> getDocument(String documentId) async {
     log.d("path : ${collectionReference.path}");
 
     try {
@@ -43,17 +43,17 @@ class FirestoreApi<T> {
 
       log.d("response : ${response.data()}");
 
-      return ResponseApiModel(error: false, data: response.data());
+      return ApiResponseModel.success(data: response.data());
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
-      return ResponseApiModel(error: true, message: e.message ?? '');
+      return ApiResponseModel.error(message: e.message ?? '');
     } catch (e) {
       log.e(e);
-      return ResponseApiModel(error: true, message: e.toString());
+      return ApiResponseModel.error(message: e.toString());
     }
   }
 
-  Future<ResponseApiModel<List<QueryDocumentSnapshot<T>>>>
+  Future<ApiResponseModel<List<QueryDocumentSnapshot<T>>>>
       getDocuments() async {
     log.d("path : ${collectionReference.path}");
 
@@ -63,21 +63,20 @@ class FirestoreApi<T> {
       final response = await collectionReference.get();
       log.d("response length: ${response.docs.length}");
 
-      return ResponseApiModel(
-        error: false,
+      return ApiResponseModel.success(
         data: response.docs,
       );
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
-      return ResponseApiModel(error: true, message: e.message ?? '');
+      return ApiResponseModel.error(message: e.message ?? '');
     } catch (e) {
       log.e("error: ${e.toString()}");
-      return ResponseApiModel(error: true, message: e.toString());
+      return ApiResponseModel.error(message: e.toString());
     }
   }
 
   /// Overwriting any existing data. If the document does not yet exist, it will be created.
-  Future<ResponseApiModel> saveDocument(T data,
+  Future<ApiResponseModel> saveDocument(T data,
       {String? documentID, merge = true}) async {
     log.i("path : ${collectionReference.path}, data :$data");
 
@@ -89,29 +88,29 @@ class FirestoreApi<T> {
       });
 
       log.i("saveDocument: success");
-      return ResponseApiModel(error: false);
+      return const ApiResponseModel.success();
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
-      return ResponseApiModel(error: true, message: e.message ?? '');
+      return ApiResponseModel.error(message: e.message ?? '');
     } catch (e) {
       log.e(e);
-      return ResponseApiModel(error: true, message: e.toString());
+      return ApiResponseModel.error(message: e.toString());
     }
   }
 
-  Future<ResponseApiModel> deleteDocument(String documentId) async {
+  Future<ApiResponseModel> deleteDocument(String documentId) async {
     log.i("path : ${collectionReference.path}, documenId : $documentId,");
     try {
       await collectionReference.doc(documentId).delete();
 
       log.i("deleteDocument: success");
-      return ResponseApiModel(error: false);
+      return const ApiResponseModel.success();
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
-      return ResponseApiModel(error: true, message: e.message ?? '');
+      return ApiResponseModel.error(message: e.message ?? '');
     } catch (e) {
       log.e(e);
-      return ResponseApiModel(error: true, message: e.toString());
+      return ApiResponseModel.error(message: e.toString());
     }
   }
 }
