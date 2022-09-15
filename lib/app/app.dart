@@ -6,6 +6,8 @@ import 'package:pengajuan_judul_dashboard/ui/views/sign_in/sign_in_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
+import '../ui/shared/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
+
 @StackedApp(
   routes: [
     MaterialRoute(page: SignInView, initial: true),
@@ -14,6 +16,9 @@ import 'package:stacked_services/stacked_services.dart';
       MaterialRoute(page: MahasiswaView),
       MaterialRoute(page: JudulView),
     ]),
+  ],
+  dialogs: [
+    StackedDialog(classType: FormMahasiswaDialogView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

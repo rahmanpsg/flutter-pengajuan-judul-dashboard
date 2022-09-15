@@ -82,7 +82,7 @@ class DashboardView extends StatelessWidget {
                         children: [
                           const Spacer(),
                           TextButton.icon(
-                            onPressed: () {},
+                            onPressed: model.onLogout,
                             icon: const Icon(
                               UniconsLine.sign_out_alt,
                               color: fontSecondaryColor,

@@ -1,0 +1,4 @@
+enum FormDialogType {
+  add,
+  edit,
+}

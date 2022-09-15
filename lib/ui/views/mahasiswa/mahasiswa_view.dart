@@ -1,8 +1,10 @@
 import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/table/table_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/widgets/custom_textfield_outline.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
+import 'package:unicons/unicons.dart';
 
 import '../../../themes/app_text.dart';
 import '../table/models/column_item.dart';
@@ -42,7 +44,31 @@ class MahasiswaView extends StatelessWidget {
                     decoration: TextDecoration.underline,
                   ),
                 ),
+                const SizedBox(height: 32),
+                const Divider(),
                 const SizedBox(height: 16),
+                Row(
+                  // mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: 200,
+                      child: OutlinedButton.icon(
+                        onPressed: model.onAddData,
+                        icon: const Icon(UniconsLine.plus),
+                        label: const Text("Tambah data"),
+                      ),
+                    ),
+                    // const SizedBox(width: 16),
+                    // ConstrainedBox(
+                    //   constraints: const BoxConstraints(maxWidth: 300),
+                    //   child: const CustomTextFieldOutline(
+                    //     hintText: 'Cari',
+                    //     outlineColor: secondaryColor,
+                    //   ),
+                    // ),
+                  ],
+                ),
+                const SizedBox(height: 8),
                 Flexible(
                   child: LayoutBuilder(builder: (context, constrain) {
                     print(constrain.maxWidth);

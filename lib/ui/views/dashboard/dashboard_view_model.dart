@@ -42,4 +42,9 @@ class DashboardViewModel extends IndexTrackingViewModel {
         break;
     }
   }
+
+  void onLogout() async {
+    // TODO: logout
+    _navigationService.clearStackAndShow(Routes.signInView);
+  }
 }

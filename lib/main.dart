@@ -1,6 +1,7 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:pengajuan_judul_dashboard/app/app.dialog.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.locator.dart';
@@ -16,6 +17,7 @@ void main() async {
   );
 
   setupLocator();
+  setupDialogUi();
 
   runApp(const MyApp());
 }
