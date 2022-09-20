@@ -53,7 +53,7 @@ class MahasiswaView extends StatelessWidget {
                     SizedBox(
                       width: 200,
                       child: OutlinedButton.icon(
-                        onPressed: model.onAddData,
+                        onPressed: () => model.onAddOrEdit(null),
                         icon: const Icon(UniconsLine.plus),
                         label: const Text("Tambah data"),
                       ),
@@ -76,18 +76,64 @@ class MahasiswaView extends StatelessWidget {
                     return TableView(
                       headerColor: secondaryColor,
                       columns: [
-                        // ColumnItem(value: "Nama", width: w * .20),
-                        // ColumnItem(value: "Nim", width: w * .20),
-                        // ColumnItem(value: "Angkatan", width: w * .20),
-                        // ColumnItem(value: "Status", width: w * .20),
-                        // ColumnItem(value: "Aksi", width: w * .20),
-                        ColumnItem(value: "Nama", width: 330),
+                        ColumnItem(value: "#", width: 30),
+                        ColumnItem(value: "Nama", width: 300),
                         ColumnItem(value: "Nim", width: 200),
                         ColumnItem(value: "Angkatan", width: 200),
-                        ColumnItem(value: "Status", width: 300),
-                        ColumnItem(value: "Aksi", width: 100),
+                        ColumnItem(value: "Status", width: 280),
+                        ColumnItem(value: "Aksi", width: 110),
                       ],
-                      rows: [TableRow(children: [])],
+                      rows: model.list
+                          .asMap()
+                          .entries
+                          .map(
+                            (entry) => TableRow(
+                              children: [
+                                Text("${entry.key + 1}"),
+                                Text("${entry.value.nama}"),
+                                Text("${entry.value.nim}"),
+                                Text("${entry.value.angkatan}"),
+                                Text("${entry.value.nama}"),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Tooltip(
+                                      message: "Edit",
+                                      preferBelow: false,
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              model.onAddOrEdit(entry.value),
+                                          child: const Icon(
+                                            UniconsLine.edit,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Tooltip(
+                                      message: 'Delete',
+                                      preferBelow: false,
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              model.onDelete(entry.value),
+                                          child: const Icon(
+                                            UniconsLine.trash,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
                     );
                   }),
                 ),

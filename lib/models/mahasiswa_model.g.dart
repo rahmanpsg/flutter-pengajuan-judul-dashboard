@@ -8,7 +8,7 @@ part of 'mahasiswa_model.dart';
 
 _$_MahasiswaModel _$$_MahasiswaModelFromJson(Map<String, dynamic> json) =>
     _$_MahasiswaModel(
-      id: json['id'] as String?,
+      id: json['id'] as String,
       nama: json['nama'] as String?,
       nim: json['nim'] as String?,
       angkatan: json['angkatan'] as String?,

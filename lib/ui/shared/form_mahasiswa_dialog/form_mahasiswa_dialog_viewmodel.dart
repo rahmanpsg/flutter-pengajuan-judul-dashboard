@@ -2,6 +2,7 @@ import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/models/mahasiswa_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:uuid/uuid.dart';
 
 import '../../../app/app.logger.dart';
 import '../../../enums/form_dialog_type.dart';
@@ -31,7 +32,7 @@ class FormMahasiswaDialogViewModel extends BaseViewModel {
   void init(Function(DialogResponse) completer, FormMahasiswaDialogData data) {
     this.completer = completer;
     type = data.type;
-    mahasiswa = data.mahasiswa ?? MahasiswaModel();
+    mahasiswa = data.mahasiswa ?? MahasiswaModel(id: const Uuid().v4());
 
     namaController.text = mahasiswa.nama ?? '';
     nimController.text = mahasiswa.nim ?? '';
@@ -44,6 +45,7 @@ class FormMahasiswaDialogViewModel extends BaseViewModel {
     nimController.addListener(() {
       mahasiswa.nim = nimController.text;
     });
+
     passwordController.addListener(() {
       mahasiswa.password = passwordController.text;
     });
@@ -56,59 +58,12 @@ class FormMahasiswaDialogViewModel extends BaseViewModel {
 
     setBusy(true);
 
-    log.d(mahasiswa);
-
-    // if (!jurnal.isValid) {
-    //   errorMessage = "Semua data harus diisi";
-    //   setBusy(false);
-
-    //   return;
-    // }
-
-    // switch (type) {
-    //   case FormDialogType.add:
-    //     // Upload file
-    //     UploadTask? uploadTask = await _firebaseStorageApi.uploadFile(
-    //         'jurnals/${jurnal.fileData!.name}',
-    //         jurnal.fileData!.data!,
-    //         jurnal.fileData!.mime);
-
-    //     if (uploadTask == null) return;
-
-    //     log.d("Uploading file...");
-
-    //     uploadTask.then((ts) async {
-    //       log.d("Uploading file success");
-
-    //       final url = await ts.ref.getDownloadURL();
-
-    //       log.i(url);
-
-    //       jurnal.fileData?.url = url;
-
-    //       completer(
-    //         DialogResponse(
-    //           confirmed: true,
-    //           data: jurnal,
-    //         ),
-    //       );
-
-    //       setBusy(false);
-    //     }).catchError((e) {
-    //       log.e("error : $e");
-    //       errorMessage = e.toString();
-    //     });
-    //     break;
-    //   case FormDialogType.edit:
-    //     completer(
-    //       DialogResponse(
-    //         confirmed: true,
-    //         data: jurnal,
-    //       ),
-    //     );
-    //     setBusy(false);
-    //     break;
-    // }
+    completer(
+      DialogResponse(
+        confirmed: true,
+        data: mahasiswa,
+      ),
+    );
 
     setBusy(false);
   }

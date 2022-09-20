@@ -56,10 +56,10 @@ class HomeView extends StatelessWidget {
                   child: Wrap(
                     runSpacing: 32,
                     spacing: 32,
-                    children: const [
+                    children: [
                       CustomStats(
                         text: "Total Mahasiswa",
-                        total: "0",
+                        total: model.totalMahasiswa,
                         iconData: UniconsSolid.user_arrows,
                         color: secondaryColor,
                       ),

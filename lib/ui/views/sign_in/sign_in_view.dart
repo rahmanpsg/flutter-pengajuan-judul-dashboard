@@ -72,8 +72,14 @@ class SignInView extends StatelessWidget {
                         ),
                         const SizedBox(height: 16),
                         OutlinedButton(
-                          onPressed: () {},
-                          child: const Text("Masuk"),
+                          onPressed: model.isBusy ? null : model.onSubmit,
+                          child: model.isBusy
+                              ? const SizedBox(
+                                  height: 20,
+                                  width: 20,
+                                  child: CircularProgressIndicator(),
+                                )
+                              : const Text("Masuk"),
                         )
                       ],
                     ),

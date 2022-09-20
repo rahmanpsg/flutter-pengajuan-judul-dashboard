@@ -6,7 +6,7 @@ part 'mahasiswa_model.g.dart';
 @unfreezed
 class MahasiswaModel with _$MahasiswaModel {
   factory MahasiswaModel({
-    String? id,
+    required String id,
     String? nama,
     String? nim,
     String? angkatan,

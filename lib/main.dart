@@ -2,6 +2,8 @@ import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/app/app.dialog.dart';
+import 'package:pengajuan_judul_dashboard/services/auth_service.dart';
+import 'package:pengajuan_judul_dashboard/services/mahasiswa_service.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'app/app.locator.dart';
@@ -19,6 +21,8 @@ void main() async {
   setupLocator();
   setupDialogUi();
 
+  syncAllData();
+
   runApp(const MyApp());
 }
 
@@ -32,7 +36,9 @@ class MyApp extends StatelessWidget {
       theme: appTheme,
       navigatorKey: StackedService.navigatorKey,
       onGenerateRoute: StackedRouter().onGenerateRoute,
-      initialRoute: Routes.dashboardView,
+      initialRoute: !locator<AuthService>().isLoggedIn
+          ? Routes.signInView
+          : Routes.dashboardView,
       scrollBehavior: const MaterialScrollBehavior().copyWith(
         dragDevices: {
           PointerDeviceKind.mouse,
@@ -43,4 +49,19 @@ class MyApp extends StatelessWidget {
       ),
     );
   }
+}
+
+Future<void> resetLocator() async {
+  await locator.reset();
+
+  setupLocator();
+  setupDialogUi();
+
+  await syncAllData();
+}
+
+Future<void> syncAllData() async {
+  if (!locator<AuthService>().isLoggedIn) return;
+
+  locator<MahasiswaService>().syncData();
 }

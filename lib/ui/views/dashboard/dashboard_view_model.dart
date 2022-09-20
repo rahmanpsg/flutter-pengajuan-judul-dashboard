@@ -1,5 +1,6 @@
 import 'package:pengajuan_judul_dashboard/app/app.logger.dart';
 import 'package:pengajuan_judul_dashboard/app/app.router.dart';
+import 'package:pengajuan_judul_dashboard/services/auth_service.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/home/home_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/judul/judul_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/mahasiswa/mahasiswa_view.dart';
@@ -12,6 +13,7 @@ class DashboardViewModel extends IndexTrackingViewModel {
   final log = getLogger("DashboardViewModel");
 
   final _navigationService = locator<NavigationService>();
+  final _authService = locator<AuthService>();
 
   void handleNavigation(int idx) {
     if (currentIndex == idx) return;
@@ -44,7 +46,7 @@ class DashboardViewModel extends IndexTrackingViewModel {
   }
 
   void onLogout() async {
-    // TODO: logout
-    _navigationService.clearStackAndShow(Routes.signInView);
+    await _authService.logout();
+    await _navigationService.clearStackAndShow(Routes.signInView);
   }
 }

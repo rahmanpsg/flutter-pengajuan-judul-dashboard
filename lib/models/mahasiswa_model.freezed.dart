@@ -20,8 +20,8 @@ MahasiswaModel _$MahasiswaModelFromJson(Map<String, dynamic> json) {
 
 /// @nodoc
 mixin _$MahasiswaModel {
-  String? get id => throw _privateConstructorUsedError;
-  set id(String? value) => throw _privateConstructorUsedError;
+  String get id => throw _privateConstructorUsedError;
+  set id(String value) => throw _privateConstructorUsedError;
   String? get nama => throw _privateConstructorUsedError;
   set nama(String? value) => throw _privateConstructorUsedError;
   String? get nim => throw _privateConstructorUsedError;
@@ -43,7 +43,7 @@ abstract class $MahasiswaModelCopyWith<$Res> {
           MahasiswaModel value, $Res Function(MahasiswaModel) then) =
       _$MahasiswaModelCopyWithImpl<$Res>;
   $Res call(
-      {String? id,
+      {String id,
       String? nama,
       String? nim,
       String? angkatan,
@@ -71,7 +71,7 @@ class _$MahasiswaModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       nama: nama == freezed
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
@@ -100,7 +100,7 @@ abstract class _$$_MahasiswaModelCopyWith<$Res>
       __$$_MahasiswaModelCopyWithImpl<$Res>;
   @override
   $Res call(
-      {String? id,
+      {String id,
       String? nama,
       String? nim,
       String? angkatan,
@@ -130,7 +130,7 @@ class __$$_MahasiswaModelCopyWithImpl<$Res>
       id: id == freezed
           ? _value.id
           : id // ignore: cast_nullable_to_non_nullable
-              as String?,
+              as String,
       nama: nama == freezed
           ? _value.nama
           : nama // ignore: cast_nullable_to_non_nullable
@@ -155,13 +155,13 @@ class __$$_MahasiswaModelCopyWithImpl<$Res>
 @JsonSerializable()
 class _$_MahasiswaModel implements _MahasiswaModel {
   _$_MahasiswaModel(
-      {this.id, this.nama, this.nim, this.angkatan, this.password});
+      {required this.id, this.nama, this.nim, this.angkatan, this.password});
 
   factory _$_MahasiswaModel.fromJson(Map<String, dynamic> json) =>
       _$$_MahasiswaModelFromJson(json);
 
   @override
-  String? id;
+  String id;
   @override
   String? nama;
   @override
@@ -191,7 +191,7 @@ class _$_MahasiswaModel implements _MahasiswaModel {
 
 abstract class _MahasiswaModel implements MahasiswaModel {
   factory _MahasiswaModel(
-      {String? id,
+      {required String id,
       String? nama,
       String? nim,
       String? angkatan,
@@ -201,8 +201,8 @@ abstract class _MahasiswaModel implements MahasiswaModel {
       _$_MahasiswaModel.fromJson;
 
   @override
-  String? get id;
-  set id(String? value);
+  String get id;
+  set id(String value);
   @override
   String? get nama;
   set nama(String? value);

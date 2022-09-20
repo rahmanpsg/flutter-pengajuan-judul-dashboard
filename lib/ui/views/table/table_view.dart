@@ -71,6 +71,7 @@ class TableView extends StatelessWidget {
                           child: SingleChildScrollView(
                             controller: model.bodyScrollController,
                             scrollDirection: Axis.horizontal,
+                            padding: const EdgeInsets.symmetric(vertical: 8),
                             child: SizedBox(
                               width: maxWidth + 130,
                               child: Scrollbar(
@@ -80,12 +81,13 @@ class TableView extends StatelessWidget {
                                   itemCount: rows!.length,
                                   // itemCount: rows!.length,
                                   itemBuilder: (_, index) => Body(
+                                    columns: columns,
                                     children: (rows![index].children ??
                                         [Container()]),
                                   ),
                                   separatorBuilder: (_, index) => const Divider(
                                     color: mainColor,
-                                    thickness: 1,
+                                    thickness: .1,
                                   ),
                                 ),
                               ),

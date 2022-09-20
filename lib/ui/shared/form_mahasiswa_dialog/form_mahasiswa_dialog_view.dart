@@ -48,7 +48,7 @@ class FormMahasiswaDialogView extends StatelessWidget {
           child: ConstrainedBox(
             constraints: const BoxConstraints(maxWidth: 600),
             child: Container(
-              padding: const EdgeInsets.all(16),
+              padding: const EdgeInsets.all(24),
               child: Form(
                 key: model.formKey,
                 child: Column(
@@ -93,11 +93,42 @@ class FormMahasiswaDialogView extends StatelessWidget {
                     const SizedBox(height: 16),
                     CustomTextFieldOutline(
                       controller: model.angkatanController,
+                      onTap: () {
+                        showDialog(
+                            context: context,
+                            builder: (contex) {
+                              return AlertDialog(
+                                title: const Text('Pilih Tahun'),
+                                content: SizedBox(
+                                    height: 300,
+                                    width: 300,
+                                    child: YearPicker(
+                                      firstDate: DateTime(2008),
+                                      lastDate: DateTime.now(),
+                                      selectedDate:
+                                          model.mahasiswa.angkatan != null
+                                              ? DateTime(int.parse(
+                                                  model.mahasiswa.angkatan!))
+                                              : DateTime.now(),
+                                      onChanged: (dateTime) {
+                                        model.angkatanController.text =
+                                            dateTime.year.toString();
+
+                                        model.mahasiswa.angkatan =
+                                            model.angkatanController.text;
+
+                                        Navigator.of(context).pop();
+                                      },
+                                    )),
+                              );
+                            });
+                      },
                       prefixIcon: const Icon(
-                        UniconsLine.university,
+                        UniconsLine.calendar_alt,
                         color: secondaryColor,
                       ),
                       hintText: 'Angkatan',
+                      readOnly: true,
                       textInputAction: TextInputAction.next,
                       keyboardType: TextInputType.number,
                       validator: (val) => Validator.validateEmpty(
