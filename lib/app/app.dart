@@ -4,6 +4,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../services/auth_service.dart';
 import '../services/mahasiswa_service.dart';
 import '../ui/shared/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
+import '../ui/shared/year_picker_dialog/year_picker_dialog_view.dart';
 import '../ui/views/dashboard/dashboard_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/judul/judul_view.dart';
@@ -21,6 +22,7 @@ import '../ui/views/sign_in/sign_in_view.dart';
   ],
   dialogs: [
     StackedDialog(classType: FormMahasiswaDialogView),
+    StackedDialog(classType: YearPickerDialogView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

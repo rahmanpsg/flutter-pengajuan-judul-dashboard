@@ -1,19 +1,17 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+class ApiResponseModel<T> {
+  final T? data;
+  final String? message;
+  final bool error;
 
-part 'api_response_model.freezed.dart';
-part 'api_response_model.g.dart';
+  ApiResponseModel.success({
+    this.data,
+    this.message = 'Success',
+    this.error = false,
+  });
 
-@Freezed(genericArgumentFactories: true, copyWith: false)
-class ApiResponseModel<T> with _$ApiResponseModel {
-  const factory ApiResponseModel.success({
-    T? data,
-    @Default('Success') String message,
-  }) = ApiResponseModelSuccess;
-  const factory ApiResponseModel.error({
-    @Default('Error') String message,
-  }) = ApiResponseModelError;
-
-  factory ApiResponseModel.fromJson(
-          Map<String, dynamic> json, T Function(Object?) fromJsonT) =>
-      _$ApiResponseModelFromJson(json, fromJsonT);
+  ApiResponseModel.error({
+    this.data,
+    this.message = 'Error',
+    this.error = true,
+  });
 }

@@ -93,36 +93,8 @@ class FormMahasiswaDialogView extends StatelessWidget {
                     const SizedBox(height: 16),
                     CustomTextFieldOutline(
                       controller: model.angkatanController,
-                      onTap: () {
-                        showDialog(
-                            context: context,
-                            builder: (contex) {
-                              return AlertDialog(
-                                title: const Text('Pilih Tahun'),
-                                content: SizedBox(
-                                    height: 300,
-                                    width: 300,
-                                    child: YearPicker(
-                                      firstDate: DateTime(2008),
-                                      lastDate: DateTime.now(),
-                                      selectedDate:
-                                          model.mahasiswa.angkatan != null
-                                              ? DateTime(int.parse(
-                                                  model.mahasiswa.angkatan!))
-                                              : DateTime.now(),
-                                      onChanged: (dateTime) {
-                                        model.angkatanController.text =
-                                            dateTime.year.toString();
-
-                                        model.mahasiswa.angkatan =
-                                            model.angkatanController.text;
-
-                                        Navigator.of(context).pop();
-                                      },
-                                    )),
-                              );
-                            });
-                      },
+                      focusNode: model.angkatanFieldFocusNode,
+                      onTap: model.openAngkatanDialog,
                       prefixIcon: const Icon(
                         UniconsLine.calendar_alt,
                         color: secondaryColor,

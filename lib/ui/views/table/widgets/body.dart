@@ -1,11 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
-import 'package:stacked/stacked.dart';
 
 import '../models/column_item.dart';
-import '../table_viewmodel.dart';
 
-class Body extends ViewModelWidget<TableViewModel> {
+class Body extends StatelessWidget {
   final List<ColumnItem> columns;
   final List<Widget> children;
 
@@ -16,7 +13,7 @@ class Body extends ViewModelWidget<TableViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, TableViewModel viewModel) {
+  Widget build(BuildContext context) {
     return Row(
       mainAxisAlignment: MainAxisAlignment.spaceAround,
       crossAxisAlignment: CrossAxisAlignment.center,

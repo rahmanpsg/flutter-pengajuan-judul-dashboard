@@ -1,6 +1,5 @@
 import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/app/app.router.dart';
-import 'package:pengajuan_judul_dashboard/models/api_response_model.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../app/app.locator.dart';
@@ -32,7 +31,7 @@ class SignInViewModel extends CustomBaseViewModel {
 
     log.d("response: $response");
 
-    if (response is ApiResponseModelSuccess) {
+    if (!response.error) {
       await syncAllData();
 
       navigationService.clearStackAndShow(Routes.dashboardView);

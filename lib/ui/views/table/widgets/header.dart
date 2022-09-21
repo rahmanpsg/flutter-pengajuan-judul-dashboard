@@ -1,10 +1,8 @@
 import 'package:flutter/material.dart';
-import 'package:stacked/stacked.dart';
 
 import '../models/column_item.dart';
-import '../table_viewmodel.dart';
 
-class Header extends ViewModelWidget<TableViewModel> {
+class Header extends StatelessWidget {
   final List<ColumnItem> columns;
   final Color? color;
 
@@ -15,7 +13,7 @@ class Header extends ViewModelWidget<TableViewModel> {
   }) : super(key: key);
 
   @override
-  Widget build(BuildContext context, TableViewModel model) {
+  Widget build(BuildContext context) {
     return Container(
       color: color,
       padding: const EdgeInsets.all(8.0),

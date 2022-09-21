@@ -88,7 +88,7 @@ class FirestoreApi<T> {
       });
 
       log.i("saveDocument: success");
-      return const ApiResponseModel.success();
+      return ApiResponseModel.success();
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
       return ApiResponseModel.error(message: e.message ?? '');
@@ -104,7 +104,7 @@ class FirestoreApi<T> {
       await collectionReference.doc(documentId).delete();
 
       log.i("deleteDocument: success");
-      return const ApiResponseModel.success();
+      return ApiResponseModel.success();
     } on FirebaseException catch (e) {
       log.e("error: ${e.toString()}");
       return ApiResponseModel.error(message: e.message ?? '');

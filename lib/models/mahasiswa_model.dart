@@ -1,18 +1,73 @@
-import 'package:freezed_annotation/freezed_annotation.dart';
+// ignore: depend_on_referenced_packages
+import 'package:collection/collection.dart';
 
-part 'mahasiswa_model.freezed.dart';
-part 'mahasiswa_model.g.dart';
+class MahasiswaModel {
+  String? id;
+  String? nama;
+  String? nim;
+  String? angkatan;
+  String? password;
 
-@unfreezed
-class MahasiswaModel with _$MahasiswaModel {
-  factory MahasiswaModel({
-    required String id,
+  MahasiswaModel({
+    this.id,
+    this.nama,
+    this.nim,
+    this.angkatan,
+    this.password,
+  });
+
+  @override
+  String toString() {
+    return 'MahasiswaModel(id: $id, nama: $nama, nim: $nim, angkatan: $angkatan, password: $password)';
+  }
+
+  factory MahasiswaModel.fromJson(Map<String, dynamic> json) {
+    return MahasiswaModel(
+      id: json['id'] as String?,
+      nama: json['nama'] as String?,
+      nim: json['nim'] as String?,
+      angkatan: json['angkatan'] as String?,
+      password: json['password'] as String?,
+    );
+  }
+
+  Map<String, dynamic> toJson() => {
+        'id': id,
+        'nama': nama,
+        'nim': nim,
+        'angkatan': angkatan,
+        'password': password,
+      };
+
+  MahasiswaModel copyWith({
+    String? id,
     String? nama,
     String? nim,
     String? angkatan,
     String? password,
-  }) = _MahasiswaModel;
+  }) {
+    return MahasiswaModel(
+      id: id ?? this.id,
+      nama: nama ?? this.nama,
+      nim: nim ?? this.nim,
+      angkatan: angkatan ?? this.angkatan,
+      password: password ?? this.password,
+    );
+  }
 
-  factory MahasiswaModel.fromJson(Map<String, dynamic> json) =>
-      _$MahasiswaModelFromJson(json);
+  @override
+  bool operator ==(Object other) {
+    if (identical(other, this)) return true;
+    if (other is! MahasiswaModel) return false;
+    final mapEquals = const DeepCollectionEquality().equals;
+    return mapEquals(other.toJson(), toJson());
+  }
+
+  @override
+  int get hashCode =>
+      id.hashCode ^
+      nama.hashCode ^
+      nim.hashCode ^
+      angkatan.hashCode ^
+      password.hashCode;
 }

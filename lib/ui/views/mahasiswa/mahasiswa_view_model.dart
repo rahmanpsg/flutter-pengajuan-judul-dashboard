@@ -21,7 +21,7 @@ class MahasiswaViewModel extends ReactiveViewModel {
 
   /// [mahasiswa] set null if you need edit the data
   void onAddOrEdit(MahasiswaModel? mahasiswa) async {
-    bool isEdit = mahasiswa == null;
+    bool isEdit = mahasiswa != null;
 
     final response = await _dialogService.showCustomDialog(
       variant: DialogType.formMahasiswaDialogView,
@@ -55,7 +55,7 @@ class MahasiswaViewModel extends ReactiveViewModel {
 
     if (response?.confirmed != true) return;
 
-    final result = await _mahasiswaService.delete(mahasiswa.id);
+    final result = await _mahasiswaService.delete(mahasiswa.id!);
 
     log.d("result: $result");
   }

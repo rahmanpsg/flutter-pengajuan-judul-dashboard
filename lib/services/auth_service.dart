@@ -24,7 +24,7 @@ class AuthService {
     } on Exception catch (e) {
       log.e(e);
 
-      return const ApiResponseModel.error(
+      return ApiResponseModel.error(
           message: 'Terjadi masalah yang tidak diketahui');
     }
   }

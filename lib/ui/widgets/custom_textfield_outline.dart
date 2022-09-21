@@ -5,6 +5,7 @@ import '../../themes/app_colors.dart';
 
 class CustomTextFieldOutline extends StatelessWidget {
   final TextEditingController? controller;
+  final FocusNode? focusNode;
   final Function()? onTap;
   final bool readOnly;
   final bool obscureText;
@@ -25,6 +26,7 @@ class CustomTextFieldOutline extends StatelessWidget {
   const CustomTextFieldOutline({
     Key? key,
     this.controller,
+    this.focusNode,
     this.onTap,
     this.readOnly = false,
     this.obscureText = false,
@@ -54,6 +56,7 @@ class CustomTextFieldOutline extends StatelessWidget {
 
     return TextFormField(
       controller: controller,
+      focusNode: focusNode,
       onTap: onTap,
       readOnly: readOnly,
       obscureText: obscureText,
