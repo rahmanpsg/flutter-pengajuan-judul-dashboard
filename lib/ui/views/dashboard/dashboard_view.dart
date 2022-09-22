@@ -47,20 +47,12 @@ class DashboardView extends StatelessWidget {
                     unselectedIconTheme: iconThemeData,
                     selectedLabelTextStyle: selectedLabelTextStyle,
                     unselectedLabelTextStyle: unselectedLabelTextStyle,
-                    destinations: const [
-                      NavigationRailDestination(
-                        icon: Icon(UniconsLine.home_alt),
-                        label: Text('Home'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(UniconsLine.users_alt),
-                        label: Text('Mahasiswa'),
-                      ),
-                      NavigationRailDestination(
-                        icon: Icon(UniconsLine.book_reader),
-                        label: Text('Judul'),
-                      ),
-                    ],
+                    destinations: model.items
+                        .map((item) => NavigationRailDestination(
+                              icon: Icon(item['icon']),
+                              label: Text(item['label']),
+                            ))
+                        .toList(),
                     leading: Padding(
                       padding: const EdgeInsets.symmetric(vertical: 32),
                       child: Column(
@@ -121,27 +113,14 @@ class DashboardView extends StatelessWidget {
                 : BottomNavigationBar(
                     currentIndex: model.currentIndex,
                     onTap: model.handleNavigation,
-                    backgroundColor: secondaryColor,
-                    fixedColor: Colors.white,
-                    selectedIconTheme: iconThemeData,
-                    unselectedIconTheme: iconThemeData,
-                    selectedLabelStyle: selectedLabelTextStyle,
-                    unselectedLabelStyle: unselectedLabelTextStyle,
-                    unselectedItemColor: Colors.white70,
-                    items: const [
-                      BottomNavigationBarItem(
-                        icon: Icon(UniconsLine.home_alt),
-                        label: 'Home',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(UniconsLine.users_alt),
-                        label: 'Mahasiswa',
-                      ),
-                      BottomNavigationBarItem(
-                        icon: Icon(UniconsLine.book_reader),
-                        label: 'Judul',
-                      ),
-                    ],
+                    unselectedItemColor: fontSecondaryColor,
+                    items: model.items
+                        .map((item) => BottomNavigationBarItem(
+                              icon: Icon(item['icon']),
+                              label: item['label'],
+                              backgroundColor: secondaryColor,
+                            ))
+                        .toList(),
                   ),
           );
         });

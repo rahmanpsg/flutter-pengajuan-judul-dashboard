@@ -6,6 +6,7 @@ import '../services/mahasiswa_service.dart';
 import '../ui/shared/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
 import '../ui/shared/year_picker_dialog/year_picker_dialog_view.dart';
 import '../ui/views/dashboard/dashboard_view.dart';
+import '../ui/views/deteksi/deteksi_view.dart';
 import '../ui/views/home/home_view.dart';
 import '../ui/views/judul/judul_view.dart';
 import '../ui/views/mahasiswa/mahasiswa_view.dart';
@@ -18,6 +19,7 @@ import '../ui/views/sign_in/sign_in_view.dart';
       MaterialRoute(page: HomeView, initial: true),
       MaterialRoute(page: MahasiswaView),
       MaterialRoute(page: JudulView),
+      MaterialRoute(page: DeteksiView),
     ]),
   ],
   dialogs: [

@@ -9,6 +9,7 @@ const Color backgroundColor = Color(0xFFF2F7FF);
 const Color orangeColor = Color(0xFFB54708);
 const Color blueColor = Color(0xFF026AA2);
 const Color greenColor = Color(0xFF2ABB52);
+const Color yellowColor = Color(0xFFF5D523);
 const Color redColor = Color(0xFFFF0000);
 const Color greyBlueColor = Color(0xFF363F72);
 
