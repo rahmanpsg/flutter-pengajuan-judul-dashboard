@@ -9,6 +9,8 @@ import 'package:stacked_services/stacked_services.dart';
 import 'app/app.locator.dart';
 import 'app/app.router.dart';
 import 'firebase_options.dart';
+import 'services/dosen_service.dart';
+import 'services/judul_service.dart';
 import 'themes/app_theme.dart';
 
 void main() async {
@@ -64,4 +66,6 @@ Future<void> syncAllData() async {
   if (!locator<AuthService>().isLoggedIn) return;
 
   locator<MahasiswaService>().syncData();
+  locator<DosenService>().syncData();
+  locator<JudulService>().syncData();
 }

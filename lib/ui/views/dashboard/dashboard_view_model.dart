@@ -3,6 +3,7 @@ import 'package:pengajuan_judul_dashboard/app/app.logger.dart';
 import 'package:pengajuan_judul_dashboard/app/app.router.dart';
 import 'package:pengajuan_judul_dashboard/services/auth_service.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/deteksi/deteksi_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/dosen/dosen_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/home/home_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/judul/judul_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/mahasiswa/mahasiswa_view.dart';
@@ -28,6 +29,10 @@ class DashboardViewModel extends IndexTrackingViewModel {
       'label': 'Mahasiswa',
     },
     {
+      'icon': UniconsLine.user_nurse,
+      'label': 'Dosen',
+    },
+    {
       'icon': UniconsLine.books,
       'label': 'Judul',
     },
@@ -40,6 +45,7 @@ class DashboardViewModel extends IndexTrackingViewModel {
   final List<Widget> _views = [
     const HomeView(),
     const MahasiswaView(),
+    const DosenView(),
     const JudulView(),
     const DeteksiView(),
   ];

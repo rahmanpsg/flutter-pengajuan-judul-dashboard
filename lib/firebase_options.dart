@@ -55,8 +55,7 @@ class DefaultFirebaseOptions {
     messagingSenderId: '912448881273',
     projectId: 'pengajuan-judul-classification',
     storageBucket: 'pengajuan-judul-classification.appspot.com',
-    iosClientId:
-        '912448881273-ctfch4o9e4dml222u0cmv56ddh7g6lm3.apps.googleusercontent.com',
+    iosClientId: '912448881273-ctfch4o9e4dml222u0cmv56ddh7g6lm3.apps.googleusercontent.com',
     iosBundleId: 'com.example.pengajuanJudulDashboard',
   );
 }

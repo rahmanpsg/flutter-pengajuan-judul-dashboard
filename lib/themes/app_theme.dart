@@ -74,7 +74,7 @@ ThemeData appTheme = ThemeData(
       borderRadius: BorderRadius.circular(4),
     ),
     side: const BorderSide(
-      color: mainGreyColor,
+      color: mainColor,
       width: 1,
     ),
   ),

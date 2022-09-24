@@ -9,16 +9,18 @@ import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/dashboard/dashboard_view.dart'
     as _i3;
 import 'package:pengajuan_judul_dashboard/ui/views/deteksi/deteksi_view.dart'
-    as _i7;
+    as _i8;
+import 'package:pengajuan_judul_dashboard/ui/views/dosen/dosen_view.dart'
+    as _i6;
 import 'package:pengajuan_judul_dashboard/ui/views/home/home_view.dart' as _i4;
 import 'package:pengajuan_judul_dashboard/ui/views/judul/judul_view.dart'
-    as _i6;
+    as _i7;
 import 'package:pengajuan_judul_dashboard/ui/views/mahasiswa/mahasiswa_view.dart'
     as _i5;
 import 'package:pengajuan_judul_dashboard/ui/views/sign_in/sign_in_view.dart'
     as _i2;
 import 'package:stacked/stacked.dart' as _i1;
-import 'package:stacked_services/stacked_services.dart' as _i8;
+import 'package:stacked_services/stacked_services.dart' as _i9;
 
 class Routes {
   static const signInView = '/';
@@ -60,19 +62,28 @@ class DashboardViewRoutes {
 
   static const mahasiswaView = '/mahasiswa-view';
 
+  static const dosenView = '/dosen-view';
+
   static const judulView = '/judul-view';
 
   static const deteksiView = '/deteksi-view';
 
-  static const all = <String>{homeView, mahasiswaView, judulView, deteksiView};
+  static const all = <String>{
+    homeView,
+    mahasiswaView,
+    dosenView,
+    judulView,
+    deteksiView
+  };
 }
 
 class DashboardViewRouter extends _i1.RouterBase {
   final _routes = <_i1.RouteDef>[
     _i1.RouteDef(DashboardViewRoutes.homeView, page: _i4.HomeView),
     _i1.RouteDef(DashboardViewRoutes.mahasiswaView, page: _i5.MahasiswaView),
-    _i1.RouteDef(DashboardViewRoutes.judulView, page: _i6.JudulView),
-    _i1.RouteDef(DashboardViewRoutes.deteksiView, page: _i7.DeteksiView)
+    _i1.RouteDef(DashboardViewRoutes.dosenView, page: _i6.DosenView),
+    _i1.RouteDef(DashboardViewRoutes.judulView, page: _i7.JudulView),
+    _i1.RouteDef(DashboardViewRoutes.deteksiView, page: _i8.DeteksiView)
   ];
 
   final _pagesMap = <Type, _i1.StackedRouteFactory>{
@@ -88,15 +99,21 @@ class DashboardViewRouter extends _i1.RouterBase {
         settings: data,
       );
     },
-    _i6.JudulView: (data) {
+    _i6.DosenView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i6.JudulView(),
+        builder: (context) => const _i6.DosenView(),
         settings: data,
       );
     },
-    _i7.DeteksiView: (data) {
+    _i7.JudulView: (data) {
       return MaterialPageRoute<dynamic>(
-        builder: (context) => const _i7.DeteksiView(),
+        builder: (context) => const _i7.JudulView(),
+        settings: data,
+      );
+    },
+    _i8.DeteksiView: (data) {
+      return MaterialPageRoute<dynamic>(
+        builder: (context) => const _i8.DeteksiView(),
         settings: data,
       );
     }
@@ -108,7 +125,7 @@ class DashboardViewRouter extends _i1.RouterBase {
   Map<Type, _i1.StackedRouteFactory> get pagesMap => _pagesMap;
 }
 
-extension NavigatorStateExtension on _i8.NavigationService {
+extension NavigatorStateExtension on _i9.NavigationService {
   Future<dynamic> navigateToSignInView(
       [int? routerId,
       bool preventDuplicates = true,
@@ -159,6 +176,20 @@ extension NavigatorStateExtension on _i8.NavigationService {
               BuildContext, Animation<double>, Animation<double>, Widget)?
           transition]) async {
     return navigateTo<dynamic>(DashboardViewRoutes.mahasiswaView,
+        id: routerId,
+        preventDuplicates: preventDuplicates,
+        parameters: parameters,
+        transition: transition);
+  }
+
+  Future<dynamic> navigateToNestedDosenViewInDashboardView(
+      [int? routerId,
+      bool preventDuplicates = true,
+      Map<String, String>? parameters,
+      Widget Function(
+              BuildContext, Animation<double>, Animation<double>, Widget)?
+          transition]) async {
+    return navigateTo<dynamic>(DashboardViewRoutes.dosenView,
         id: routerId,
         preventDuplicates: preventDuplicates,
         parameters: parameters,

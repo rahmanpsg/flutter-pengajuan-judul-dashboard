@@ -1,20 +1,20 @@
-// ignore: depend_on_referenced_packages
 import 'package:collection/collection.dart';
+import 'package:uuid/uuid.dart';
 
 class MahasiswaModel {
-  String? id;
+  String id;
   String? nama;
   String? nim;
   String? angkatan;
   String? password;
 
   MahasiswaModel({
-    this.id,
+    String? id,
     this.nama,
     this.nim,
     this.angkatan,
     this.password,
-  });
+  }) : id = id ?? const Uuid().v4();
 
   @override
   String toString() {

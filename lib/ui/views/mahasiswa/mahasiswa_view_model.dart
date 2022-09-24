@@ -7,7 +7,7 @@ import '../../../app/app.locator.dart';
 import '../../../enums/form_dialog_type.dart';
 import '../../../models/mahasiswa_model.dart';
 import '../../../services/mahasiswa_service.dart';
-import '../../shared/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
+import 'widgets/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
 
 class MahasiswaViewModel extends ReactiveViewModel {
   final log = getLogger("MahasiswaViewModel");
@@ -19,7 +19,7 @@ class MahasiswaViewModel extends ReactiveViewModel {
 
   Future<void> init() async {}
 
-  /// [mahasiswa] set null if you need edit the data
+  /// [mahasiswa] set null if you need to add new the data
   void onAddOrEdit(MahasiswaModel? mahasiswa) async {
     bool isEdit = mahasiswa != null;
 
@@ -55,7 +55,7 @@ class MahasiswaViewModel extends ReactiveViewModel {
 
     if (response?.confirmed != true) return;
 
-    final result = await _mahasiswaService.delete(mahasiswa.id!);
+    final result = await _mahasiswaService.delete(mahasiswa.id);
 
     log.d("result: $result");
   }

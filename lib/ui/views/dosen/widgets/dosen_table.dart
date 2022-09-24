@@ -1,27 +1,25 @@
 import 'package:flutter/material.dart';
-import 'package:pengajuan_judul_dashboard/ui/views/mahasiswa/mahasiswa_view_model.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/dosen/dosen_view_model.dart';
 import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../../themes/app_colors.dart';
-import '../../../widgets/custom_chip.dart';
 import '../../table/models/column_item.dart';
 import '../../table/table_view.dart';
 
-class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
-  const MahasiswaTable({super.key});
+class DosenTable extends ViewModelWidget<DosenViewModel> {
+  const DosenTable({super.key});
 
   @override
-  Widget build(BuildContext context, MahasiswaViewModel viewModel) {
+  Widget build(BuildContext context, DosenViewModel viewModel) {
     return TableView(
       headerColor: secondaryColor,
       columns: [
         ColumnItem(value: "#", width: 50),
-        ColumnItem(value: "Nama", width: 300),
-        ColumnItem(value: "Nim", width: 200),
-        ColumnItem(value: "Angkatan", width: 200),
-        ColumnItem(value: "Status", width: 265),
-        ColumnItem(value: "Aksi", width: 100),
+        ColumnItem(value: "Nama", width: 310),
+        ColumnItem(value: "Nbm", width: 200),
+        ColumnItem(value: "Jabatan", width: 430),
+        ColumnItem(value: "Aksi", width: 140),
       ],
       rows: viewModel.list
           .asMap()
@@ -31,15 +29,25 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
               children: [
                 Text("${entry.key + 1}"),
                 Text("${entry.value.nama}"),
-                Text("${entry.value.nim}"),
-                Text("${entry.value.angkatan}"),
-                const CustomChip(
-                  text: 'Accepted',
-                  color: greenColor,
-                ),
+                Text("${entry.value.nbm}"),
+                Text("${entry.value.jabatan}"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    Tooltip(
+                      message: "Lihat",
+                      preferBelow: false,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          // onTap: () => viewModel.onAddOrEdit(entry.value),
+                          child: const Icon(
+                            UniconsLine.eye,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
                     Tooltip(
                       message: "Edit",
                       preferBelow: false,
@@ -54,6 +62,7 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
                         ),
                       ),
                     ),
+                    // const SizedBox(width: 4),
                     Tooltip(
                       message: 'Delete',
                       preferBelow: false,

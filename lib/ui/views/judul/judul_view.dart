@@ -2,7 +2,6 @@ import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_tab_bar.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/table/table_view.dart';
-import 'package:pengajuan_judul_dashboard/ui/widgets/custom_chip.dart';
 import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
@@ -47,8 +46,6 @@ class JudulView extends StatelessWidget {
                       decoration: TextDecoration.underline,
                     ),
                   ),
-                  // const SizedBox(height: 32),
-                  // const Divider(),
                   const SizedBox(height: 16),
                   const JudulTabBar(),
                   const SizedBox(height: 16),
@@ -56,7 +53,7 @@ class JudulView extends StatelessWidget {
                     height: 40,
                     width: 150,
                     child: OutlinedButton.icon(
-                      onPressed: () {},
+                      onPressed: () => model.onAddOrEdit(null),
                       icon: const Icon(UniconsLine.plus),
                       label: const Text("Tambah judul"),
                     ),
@@ -72,6 +69,70 @@ class JudulView extends StatelessWidget {
                         ColumnItem(value: "Status", width: 265),
                         ColumnItem(value: "Aksi", width: 100),
                       ],
+                      rows: model.list
+                          .asMap()
+                          .entries
+                          .map(
+                            (entry) => TableRow(
+                              children: [
+                                Text("${entry.key + 1}"),
+                                Text("${entry.value.judul}"),
+                                Text("${entry.value.tanggal}"),
+                                Text("${entry.value.status}"),
+                                Row(
+                                  mainAxisAlignment:
+                                      MainAxisAlignment.spaceAround,
+                                  children: [
+                                    Tooltip(
+                                      message: "Lihat",
+                                      preferBelow: false,
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          // onTap: () => viewModel.onAddOrEdit(entry.value),
+                                          child: const Icon(
+                                            UniconsLine.eye,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    Tooltip(
+                                      message: "Edit",
+                                      preferBelow: false,
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          onTap: () =>
+                                              model.onAddOrEdit(entry.value),
+                                          child: const Icon(
+                                            UniconsLine.edit,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                    // const SizedBox(width: 4),
+                                    Tooltip(
+                                      message: 'Delete',
+                                      preferBelow: false,
+                                      child: MouseRegion(
+                                        cursor: SystemMouseCursors.click,
+                                        child: GestureDetector(
+                                          // onTap: () => model.onDelete(entry.value),
+                                          child: const Icon(
+                                            UniconsLine.trash,
+                                            size: 20,
+                                          ),
+                                        ),
+                                      ),
+                                    ),
+                                  ],
+                                ),
+                              ],
+                            ),
+                          )
+                          .toList(),
                     ),
                   ),
                 ],
