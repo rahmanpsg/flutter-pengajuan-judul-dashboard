@@ -9,7 +9,8 @@ class JudulService extends CustomBaseService<JudulModel> {
   JudulService()
       : super(
           collectionPath: 'juduls',
-          orderBy: 'tanggal',
+          orderBy: 'createdAt',
+          descending: true,
           fromJson: JudulModel.fromJson,
         );
 }

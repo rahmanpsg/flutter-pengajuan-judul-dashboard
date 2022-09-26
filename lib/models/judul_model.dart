@@ -1,5 +1,9 @@
+import 'dart:ui';
+
 import 'package:collection/collection.dart';
+import 'package:intl/intl.dart';
 import 'package:pengajuan_judul_dashboard/models/file_data_model.dart';
+import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
 import 'package:uuid/uuid.dart';
 
 class JudulModel {
@@ -8,9 +12,10 @@ class JudulModel {
   FileDataModel? fileData;
   bool? status;
   double? deteksi;
-  DateTime? tanggal;
   String? mahasiswaId;
   List<String>? pembimbingIds;
+  DateTime? _createdAt;
+  DateTime? _updatedAt;
 
   JudulModel({
     String? id,
@@ -18,15 +23,17 @@ class JudulModel {
     this.fileData,
     this.status,
     this.deteksi,
-    DateTime? tanggal,
     this.mahasiswaId,
     this.pembimbingIds,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   })  : id = id ?? const Uuid().v4(),
-        tanggal = tanggal ?? DateTime.now();
+        _createdAt = createdAt ?? DateTime.now(),
+        _updatedAt = updatedAt ?? DateTime.now();
 
   @override
   String toString() {
-    return 'JudulModel(id: $id, judul: $judul, fileData: $fileData, status: $status, deteksi: $deteksi, tanggal: $tanggal)';
+    return 'JudulModel(id: $id, judul: $judul, fileData: $fileData, status: $status, deteksi: $deteksi, mahasiswaId: $mahasiswaId, createdAt: $_createdAt, updatedAt: $_updatedAt)';
   }
 
   factory JudulModel.fromJson(Map<String, dynamic> json) => JudulModel(
@@ -37,7 +44,10 @@ class JudulModel {
             : null,
         status: json['status'] as bool?,
         deteksi: (json['deteksi'] as num?)?.toDouble(),
-        // tanggal: (json['tanggal']) as DateTime?,
+        mahasiswaId: json['mahasiswaId'] as String?,
+        pembimbingIds: json['pembimbingIds'] as List<String>?,
+        createdAt: DateTime.fromMillisecondsSinceEpoch(json['createdAt']),
+        updatedAt: DateTime.fromMillisecondsSinceEpoch(json['updatedAt']),
       );
 
   Map<String, dynamic> toJson() => {
@@ -45,10 +55,11 @@ class JudulModel {
         'judul': judul,
         if (fileData != null) 'fileData': fileData?.toJson(),
         'status': status,
-        'tanggal': tanggal,
         if (deteksi != null) 'deteksi': deteksi,
         if (mahasiswaId != null) 'mahasiswaId': mahasiswaId,
         if (pembimbingIds != null) 'pembimbingIds': pembimbingIds,
+        'createdAt': _createdAt?.millisecondsSinceEpoch,
+        'updatedAt': DateTime.now().millisecondsSinceEpoch,
       };
 
   JudulModel copyWith({
@@ -57,9 +68,10 @@ class JudulModel {
     FileDataModel? fileData,
     bool? status,
     double? deteksi,
-    DateTime? tanggal,
     String? mahasiswaId,
     List<String>? pembimbingIds,
+    DateTime? createdAt,
+    DateTime? updatedAt,
   }) {
     return JudulModel(
       id: id ?? this.id,
@@ -67,11 +79,28 @@ class JudulModel {
       fileData: fileData ?? this.fileData,
       status: status ?? this.status,
       deteksi: deteksi ?? this.deteksi,
-      tanggal: tanggal ?? this.tanggal,
       mahasiswaId: mahasiswaId ?? this.mahasiswaId,
       pembimbingIds: pembimbingIds ?? this.pembimbingIds,
+      createdAt: createdAt ?? _createdAt,
+      updatedAt: updatedAt ?? _updatedAt,
     );
   }
+
+  String get statusString => status == null
+      ? 'Belum diverifikasi'
+      : status == true
+          ? 'Diterima'
+          : 'Ditolak';
+
+  Color get statusColor => status == null
+      ? yellowColor
+      : status == true
+          ? greenColor
+          : dangerColor;
+
+  String get tanggalFormat => DateFormat('dd/MM/yyyy').format(_createdAt!);
+  String get tanggalUploadFormat =>
+      DateFormat('EEEE, dd MMMM yyyy hh:mm a').format(_createdAt!);
 
   @override
   bool operator ==(Object other) {
@@ -86,6 +115,8 @@ class JudulModel {
       id.hashCode ^
       judul.hashCode ^
       status.hashCode ^
-      tanggal.hashCode ^
+      mahasiswaId.hashCode ^
+      _createdAt.hashCode ^
+      _updatedAt.hashCode ^
       deteksi.hashCode;
 }

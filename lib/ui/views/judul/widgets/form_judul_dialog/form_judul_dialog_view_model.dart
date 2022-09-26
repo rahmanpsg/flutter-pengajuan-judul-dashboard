@@ -33,7 +33,9 @@ class FormJudulDialogViewModel extends CustomBaseViewModel {
       Function(DialogResponse) completer, FormJudulDialogData data) async {
     this.completer = completer;
     type = data.type;
-    judul = data.judul ?? JudulModel();
+    judul = data.judul ?? JudulModel(status: true);
+
+    log.d(judul);
   }
 
   void openFilePicker(TextEditingController controller) async {
@@ -94,15 +96,6 @@ class FormJudulDialogViewModel extends CustomBaseViewModel {
         fileData?.url = url;
 
         judul.fileData = fileData;
-
-        completer(
-          DialogResponse(
-            confirmed: true,
-            data: judul,
-          ),
-        );
-
-        setBusy(false);
       }).catchError((e) {
         log.e(e);
 
@@ -111,7 +104,24 @@ class FormJudulDialogViewModel extends CustomBaseViewModel {
           description: 'Terjadi masalah, silahkan coba kembali!',
           dialogPlatform: DialogPlatform.Material,
         );
+      }).whenComplete(() {
+        completer(
+          DialogResponse(
+            confirmed: true,
+            data: judul,
+          ),
+        );
+
+        setBusy(false);
       });
+      return;
     }
+
+    completer(
+      DialogResponse(
+        confirmed: true,
+        data: judul,
+      ),
+    );
   }
 }

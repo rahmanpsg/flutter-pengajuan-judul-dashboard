@@ -25,7 +25,7 @@ class JudulTabBar extends ViewModelWidget<JudulViewModel> {
               if (deviceType != DeviceScreenType.mobile) ...[
                 const SizedBox(width: 8),
                 CustomChip(
-                  text: '10',
+                  text: viewModel.total.toString(),
                   color: viewModel.tabIndexSelected == 0
                       ? mainColor
                       : fontParagraphColor,
@@ -50,7 +50,7 @@ class JudulTabBar extends ViewModelWidget<JudulViewModel> {
               if (deviceType != DeviceScreenType.mobile) ...[
                 const SizedBox(width: 8),
                 CustomChip(
-                  text: '10',
+                  text: viewModel.totalBelumDiverifikasi.toString(),
                   color: viewModel.tabIndexSelected == 1
                       ? yellowColor
                       : fontParagraphColor,
@@ -75,7 +75,7 @@ class JudulTabBar extends ViewModelWidget<JudulViewModel> {
               if (deviceType != DeviceScreenType.mobile) ...[
                 const SizedBox(width: 8),
                 CustomChip(
-                  text: '10',
+                  text: viewModel.totalDiterima.toString(),
                   color: viewModel.tabIndexSelected == 2
                       ? greenColor
                       : fontParagraphColor,
@@ -100,7 +100,7 @@ class JudulTabBar extends ViewModelWidget<JudulViewModel> {
               if (deviceType != DeviceScreenType.mobile) ...[
                 const SizedBox(width: 8),
                 CustomChip(
-                  text: '110000',
+                  text: viewModel.totalDitolak.toString(),
                   color: viewModel.tabIndexSelected == 3
                       ? dangerColor
                       : fontParagraphColor,

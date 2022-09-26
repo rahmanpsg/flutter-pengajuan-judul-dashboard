@@ -6,6 +6,7 @@ import 'package:stacked_services/stacked_services.dart';
 import '../services/auth_service.dart';
 import '../services/dosen_service.dart';
 import '../services/mahasiswa_service.dart';
+import '../ui/views/judul/widgets/details_judul_dialog/details_judul_dialog_view.dart';
 import '../ui/views/judul/widgets/form_judul_dialog/form_judul_dialog_view.dart';
 import '../ui/views/mahasiswa/widgets/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
 import '../ui/shared/year_picker_dialog/year_picker_dialog_view.dart';
@@ -34,6 +35,7 @@ import 'api/firebase_storage_api.dart';
     StackedDialog(classType: FormMahasiswaDialogView),
     StackedDialog(classType: FormDosenDialogView),
     StackedDialog(classType: FormJudulDialogView),
+    StackedDialog(classType: DetailsJudulDialogView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),

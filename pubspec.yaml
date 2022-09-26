@@ -20,6 +20,8 @@ dependencies:
   flutter:
     sdk: flutter
   flutter_hooks: ^0.18.5+1
+  flutter_svg: ^1.1.5
+  intl: ^0.17.0
   responsive_builder: ^0.4.3
   stacked: ^3.0.0
   stacked_hooks: ^0.2.2

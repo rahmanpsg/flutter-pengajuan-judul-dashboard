@@ -87,7 +87,8 @@ class _HookForm extends HookViewModelWidget<FormJudulDialogViewModel> {
   @override
   Widget buildViewModelWidget(
       BuildContext context, FormJudulDialogViewModel viewModel) {
-    final judulController = useTextEditingController();
+    final judulController =
+        useTextEditingController(text: viewModel.judul.judul);
     final fileController = useTextEditingController();
 
     return Form(

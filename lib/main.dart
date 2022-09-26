@@ -1,6 +1,8 @@
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter/gestures.dart';
 import 'package:flutter/material.dart';
+import 'package:intl/date_symbol_data_local.dart';
+import 'package:intl/intl.dart';
 import 'package:pengajuan_judul_dashboard/app/app.dialog.dart';
 import 'package:pengajuan_judul_dashboard/services/auth_service.dart';
 import 'package:pengajuan_judul_dashboard/services/mahasiswa_service.dart';
@@ -24,6 +26,9 @@ void main() async {
   setupDialogUi();
 
   syncAllData();
+
+  Intl.defaultLocale = 'id_ID';
+  initializeDateFormatting();
 
   runApp(const MyApp());
 }

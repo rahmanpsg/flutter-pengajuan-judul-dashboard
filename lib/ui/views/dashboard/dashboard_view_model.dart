@@ -36,10 +36,10 @@ class DashboardViewModel extends IndexTrackingViewModel {
       'icon': UniconsLine.books,
       'label': 'Judul',
     },
-    {
-      'icon': UniconsLine.book_reader,
-      'label': 'Deteksi',
-    },
+    // {
+    //   'icon': UniconsLine.book_reader,
+    //   'label': 'Deteksi',
+    // },
   ];
 
   final List<Widget> _views = [
@@ -47,7 +47,7 @@ class DashboardViewModel extends IndexTrackingViewModel {
     const MahasiswaView(),
     const DosenView(),
     const JudulView(),
-    const DeteksiView(),
+    // const DeteksiView(),
   ];
 
   void handleNavigation(int idx) {

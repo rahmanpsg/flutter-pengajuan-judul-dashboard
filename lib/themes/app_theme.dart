@@ -22,14 +22,17 @@ ThemeData appTheme = ThemeData(
   ),
   elevatedButtonTheme: ElevatedButtonThemeData(
     style: ElevatedButton.styleFrom(
-      foregroundColor: mainColor,
+      backgroundColor: secondaryColor,
       disabledForegroundColor: mainColor,
       elevation: 0,
       minimumSize: const Size(double.infinity, 60),
       shape: RoundedRectangleBorder(
         borderRadius: BorderRadius.circular(9),
       ),
-      textStyle: boldTextStyle.copyWith(fontSize: 16),
+      textStyle: boldTextStyle.copyWith(
+        fontSize: 16,
+        color: Colors.white,
+      ),
       shadowColor: Colors.transparent,
     ),
   ),
