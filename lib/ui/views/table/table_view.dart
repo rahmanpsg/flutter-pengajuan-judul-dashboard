@@ -1,11 +1,12 @@
 import 'package:flutter/material.dart';
+import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
 import 'models/column_item.dart';
 import 'widgets/header.dart';
 // import 'widgets/toolbar.dart';
 import 'widgets/body.dart';
 
-class TableView extends StatefulWidget {
+class TableView extends HookWidget {
   final List<ColumnItem> columns;
   final List<TableRow>? rows;
   final BorderRadiusGeometry? borderRadius;
@@ -22,38 +23,23 @@ class TableView extends StatefulWidget {
   }) : super(key: key);
 
   @override
-  State<TableView> createState() => _TableViewState();
-}
+  Widget build(BuildContext context) {
+    final headerScrollController = useScrollController();
+    final bodyScrollController = useScrollController();
 
-class _TableViewState extends State<TableView> {
-  final headerScrollController = ScrollController();
-  final bodyScrollController = ScrollController();
-  final searchController = TextEditingController();
-
-  @override
-  void initState() {
-    bodyScrollController.addListener(() {
-      headerScrollController.animateTo(
-        bodyScrollController.offset,
-        duration: const Duration(milliseconds: 100),
-        curve: Curves.easeIn,
-      );
+    useEffect(() {
+      bodyScrollController.addListener(() {
+        headerScrollController.animateTo(
+          bodyScrollController.offset,
+          duration: const Duration(milliseconds: 100),
+          curve: Curves.easeIn,
+        );
+      });
+      return;
     });
 
-    super.initState();
-  }
-
-  @override
-  void dispose() {
-    headerScrollController.dispose();
-    bodyScrollController.dispose();
-    super.dispose();
-  }
-
-  @override
-  Widget build(BuildContext context) {
     double maxWidth =
-        widget.columns.map((column) => column.width).reduce((a, b) => a + b);
+        columns.map((column) => column.width).reduce((a, b) => a + b);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -63,9 +49,9 @@ class _TableViewState extends State<TableView> {
         Flexible(
           child: Container(
             decoration: BoxDecoration(
-              borderRadius: widget.borderRadius,
+              borderRadius: borderRadius,
               border: Border.all(
-                color: widget.borderColor,
+                color: borderColor,
                 width: 1,
               ),
             ),
@@ -78,12 +64,12 @@ class _TableViewState extends State<TableView> {
                   physics: const NeverScrollableScrollPhysics(),
                   scrollDirection: Axis.horizontal,
                   child: Header(
-                    color: widget.headerColor,
-                    columns: widget.columns,
+                    color: headerColor,
+                    columns: columns,
                   ),
                 ),
                 // Divider(color: borderColor, thickness: 1),
-                if (widget.rows != null && widget.rows!.isNotEmpty)
+                if (rows != null && rows!.isNotEmpty)
                   Flexible(
                     child: SingleChildScrollView(
                       controller: bodyScrollController,
@@ -91,27 +77,22 @@ class _TableViewState extends State<TableView> {
                       padding: const EdgeInsets.symmetric(vertical: 8),
                       child: SizedBox(
                         width: maxWidth + 130,
-                        child: Scrollbar(
-                          thickness: 10,
-                          child: ListView.separated(
-                            // shrinkWrap: true,
-                            itemCount: widget.rows!.length,
-                            // itemCount: rows!.length,
-                            itemBuilder: (_, index) => Body(
-                              columns: widget.columns,
-                              children: (widget.rows![index].children ??
-                                  [Container()]),
-                            ),
-                            separatorBuilder: (_, index) => const Divider(
-                              color: mainColor,
-                              thickness: .1,
-                            ),
+                        child: ListView.separated(
+                          // shrinkWrap: true,
+                          itemCount: rows!.length,
+                          itemBuilder: (_, index) => Body(
+                            columns: columns,
+                            children: (rows![index].children ?? [Container()]),
+                          ),
+                          separatorBuilder: (_, index) => const Divider(
+                            color: mainColor,
+                            thickness: .1,
                           ),
                         ),
                       ),
                     ),
                   ),
-                if (widget.rows == null || widget.rows!.isEmpty)
+                if (rows == null || rows!.isEmpty)
                   const Expanded(
                     child: Center(
                       child: Text(
