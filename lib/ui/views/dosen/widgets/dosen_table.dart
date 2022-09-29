@@ -28,9 +28,9 @@ class DosenTable extends ViewModelWidget<DosenViewModel> {
             (entry) => TableRow(
               children: [
                 Text("${entry.key + 1}"),
-                Text("${entry.value.nama}"),
-                Text("${entry.value.nbm}"),
-                Text("${entry.value.jabatan}"),
+                SelectableText("${entry.value.nama}"),
+                SelectableText("${entry.value.nbm}"),
+                SelectableText("${entry.value.jabatan}"),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

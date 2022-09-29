@@ -17,11 +17,11 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
       headerColor: secondaryColor,
       columns: [
         ColumnItem(value: "#", width: 50),
-        ColumnItem(value: "Nama", width: 300),
-        ColumnItem(value: "Nim", width: 200),
+        ColumnItem(value: "Nama", width: 500),
+        ColumnItem(value: "Nim", width: 250),
         ColumnItem(value: "Angkatan", width: 200),
-        ColumnItem(value: "Status", width: 265),
-        ColumnItem(value: "Aksi", width: 100),
+        // ColumnItem(value: "Status", width: 265),
+        ColumnItem(value: "Aksi", width: 130),
       ],
       rows: viewModel.list
           .asMap()
@@ -30,13 +30,13 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
             (entry) => TableRow(
               children: [
                 Text("${entry.key + 1}"),
-                Text("${entry.value.nama}"),
-                Text("${entry.value.nim}"),
-                Text("${entry.value.angkatan}"),
-                const CustomChip(
-                  text: 'Accepted',
-                  color: greenColor,
-                ),
+                SelectableText("${entry.value.nama}"),
+                SelectableText("${entry.value.nim}"),
+                SelectableText("${entry.value.angkatan}"),
+                // const CustomChip(
+                //   text: 'Accepted',
+                //   color: greenColor,
+                // ),
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [

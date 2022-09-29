@@ -31,8 +31,8 @@ class JudulTable extends ViewModelWidget<JudulViewModel> {
             (entry) => TableRow(
               children: [
                 Text("${entry.key + 1}"),
-                Text("${entry.value.judul}"),
-                Text(entry.value.tanggalFormat),
+                SelectableText("${entry.value.judul}"),
+                SelectableText(entry.value.tanggalFormat),
                 CustomChip(
                   text: entry.value.statusString,
                   color: entry.value.statusColor,

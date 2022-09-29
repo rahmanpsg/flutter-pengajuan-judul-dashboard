@@ -65,19 +65,19 @@ class HomeView extends StatelessWidget {
                       ),
                       CustomStats(
                         text: "Total Judul",
-                        total: "0",
+                        total: model.totalJudul,
                         iconData: UniconsSolid.apps,
                         color: mainColor,
                       ),
                       CustomStats(
                         text: "Total Judul Diterima",
-                        total: "0",
+                        total: model.totalDiterima,
                         iconData: UniconsSolid.check_circle,
                         color: greenColor,
                       ),
                       CustomStats(
                         text: "Total Judul Ditolak",
-                        total: "0",
+                        total: model.totalDitolak,
                         iconData: UniconsSolid.times_circle,
                         color: dangerColor,
                       ),

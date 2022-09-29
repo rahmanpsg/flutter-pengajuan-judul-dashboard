@@ -8,7 +8,7 @@ import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/form_judul_dial
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
-import 'widgets/details_judul_dialog/details_judul_dialog_view.dart';
+import 'widgets/judul_dialog/judul_dialog_view.dart';
 
 class JudulViewModel extends ReactiveViewModel {
   final log = getLogger("JudulViewModel");
@@ -45,8 +45,8 @@ class JudulViewModel extends ReactiveViewModel {
 
   void openDetails(JudulModel judul) async {
     final response = await _dialogService.showCustomDialog(
-      variant: DialogType.detailsJudulDialogView,
-      data: DetailsJudulDialogData(judul: judul),
+      variant: DialogType.judulDialogView,
+      data: JudulDialogData(judul: judul),
     );
   }
 
