@@ -5,8 +5,8 @@ import '../app.logger.dart';
 
 class Api {
   static final Dio _dio = Dio(BaseOptions(
-    baseUrl: 'http://127.0.0.1:8000/api/',
-    // baseUrl: 'https://pengajuan-judul-server.herokuapp.com/api/',
+    // baseUrl: 'http://127.0.0.1:8000/api/',
+    baseUrl: 'https://pengajuan-judul-server.herokuapp.com/api/',
   ));
 
   final log = getLogger('Api');

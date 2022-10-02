@@ -4,7 +4,6 @@ import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../../themes/app_colors.dart';
-import '../../../widgets/custom_chip.dart';
 import '../../table/models/column_item.dart';
 import '../../table/table_view.dart';
 

@@ -13,7 +13,9 @@ class JudulModel {
   bool? status;
   double? deteksi;
   String? mahasiswaId;
-  List<String>? pembimbingIds;
+  String? pembimbing1;
+  String? pembimbing2;
+  String? koreksi;
   DateTime? _createdAt;
   DateTime? _updatedAt;
 
@@ -24,7 +26,9 @@ class JudulModel {
     this.status,
     this.deteksi,
     this.mahasiswaId,
-    this.pembimbingIds,
+    this.pembimbing1,
+    this.pembimbing2,
+    this.koreksi,
     DateTime? createdAt,
     DateTime? updatedAt,
   })  : id = id ?? const Uuid().v4(),
@@ -33,7 +37,7 @@ class JudulModel {
 
   @override
   String toString() {
-    return 'JudulModel(id: $id, judul: $judul, fileData: $fileData, status: $status, deteksi: $deteksi, mahasiswaId: $mahasiswaId, createdAt: $_createdAt, updatedAt: $_updatedAt)';
+    return 'JudulModel(id: $id, judul: $judul, fileData: $fileData, status: $status, deteksi: $deteksi, mahasiswaId: $mahasiswaId, pembimbing1: $pembimbing1, pembimbing2: $pembimbing2, koreksi: $koreksi, createdAt: $_createdAt, updatedAt: $_updatedAt)';
   }
 
   factory JudulModel.fromJson(Map<String, dynamic> json) => JudulModel(
@@ -45,7 +49,9 @@ class JudulModel {
         status: json['status'] as bool?,
         deteksi: (json['deteksi'] as num?)?.toDouble(),
         mahasiswaId: json['mahasiswaId'] as String?,
-        pembimbingIds: json['pembimbingIds'] as List<String>?,
+        pembimbing1: json['pembimbing1'] as String?,
+        pembimbing2: json['pembimbing2'] as String?,
+        koreksi: json['koreksi'] as String?,
         createdAt: DateTime.fromMillisecondsSinceEpoch(json['createdAt']),
         updatedAt: DateTime.fromMillisecondsSinceEpoch(json['updatedAt']),
       );
@@ -57,7 +63,9 @@ class JudulModel {
         'status': status,
         if (deteksi != null) 'deteksi': deteksi,
         if (mahasiswaId != null) 'mahasiswaId': mahasiswaId,
-        if (pembimbingIds != null) 'pembimbingIds': pembimbingIds,
+        if (pembimbing1 != null) 'pembimbing1': pembimbing1,
+        if (pembimbing2 != null) 'pembimbing2': pembimbing2,
+        if (koreksi != null) 'koreksi': koreksi,
         'createdAt': _createdAt?.millisecondsSinceEpoch,
         'updatedAt': DateTime.now().millisecondsSinceEpoch,
       };
@@ -69,7 +77,9 @@ class JudulModel {
     bool? status,
     double? deteksi,
     String? mahasiswaId,
-    List<String>? pembimbingIds,
+    String? pembimbing1,
+    String? pembimbing2,
+    String? koreksi,
     DateTime? createdAt,
     DateTime? updatedAt,
   }) {
@@ -80,7 +90,9 @@ class JudulModel {
       status: status ?? this.status,
       deteksi: deteksi ?? this.deteksi,
       mahasiswaId: mahasiswaId ?? this.mahasiswaId,
-      pembimbingIds: pembimbingIds ?? this.pembimbingIds,
+      pembimbing1: pembimbing1 ?? this.pembimbing1,
+      pembimbing2: pembimbing2 ?? this.pembimbing2,
+      koreksi: koreksi ?? this.koreksi,
       createdAt: createdAt ?? _createdAt,
       updatedAt: updatedAt ?? _updatedAt,
     );

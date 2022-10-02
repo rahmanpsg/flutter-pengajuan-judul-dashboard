@@ -3,6 +3,7 @@ import 'package:flutter/material.dart';
 import '../../themes/app_colors.dart';
 
 class CustomDropdownSearch<T> extends StatelessWidget {
+  final TextEditingController? controller;
   final String? hintText;
   final Widget? prefixIcon;
   final List<T> items;
@@ -11,9 +12,11 @@ class CustomDropdownSearch<T> extends StatelessWidget {
   final Color color;
   final Color outlineColor;
   final String Function(T)? itemAsString;
+  final String? Function(T?)? validator;
 
   const CustomDropdownSearch({
     Key? key,
+    this.controller,
     this.hintText,
     this.prefixIcon,
     required this.items,
@@ -22,6 +25,7 @@ class CustomDropdownSearch<T> extends StatelessWidget {
     this.itemAsString,
     this.color = backgroundColor,
     this.outlineColor = mainGreyColor,
+    this.validator,
   }) : super(key: key);
 
   @override
@@ -41,6 +45,8 @@ class CustomDropdownSearch<T> extends StatelessWidget {
         showSearchBox: true,
       ),
       itemAsString: itemAsString,
+      autoValidateMode: AutovalidateMode.onUserInteraction,
+      validator: validator,
       dropdownDecoratorProps: DropDownDecoratorProps(
         dropdownSearchDecoration: InputDecoration(
           fillColor: color,

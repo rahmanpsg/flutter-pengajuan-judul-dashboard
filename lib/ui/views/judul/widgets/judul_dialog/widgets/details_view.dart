@@ -75,6 +75,13 @@ class DetailsView extends ViewModelWidget<JudulDialogViewModel> {
                 type: ListDetailType.chip,
               ),
               const SizedBox(height: 16),
+              if (viewModel.judul.koreksi != null) ...[
+                ListDetail(
+                  title: 'Koreksi',
+                  subtitle: viewModel.judul.koreksi ?? '',
+                ),
+                const SizedBox(height: 16),
+              ],
               if (viewModel.judul.mahasiswaId != null) ...[
                 ListDetail(
                   title: 'Mahasiswa',
@@ -84,23 +91,24 @@ class DetailsView extends ViewModelWidget<JudulDialogViewModel> {
                 ),
                 const SizedBox(height: 16)
               ],
-              if (viewModel.judul.pembimbingIds != null)
-                ...viewModel.pembimbings
-                    .map(
-                      (item) => Column(
-                        mainAxisAlignment: MainAxisAlignment.start,
-                        crossAxisAlignment: CrossAxisAlignment.start,
-                        children: [
-                          ListDetail(
-                            title: item.nama!,
-                            subtitle: item.nbm!,
-                            type: ListDetailType.circle,
-                          ),
-                          const SizedBox(height: 16),
-                        ],
-                      ),
-                    )
-                    .toList(),
+              if (viewModel.pembimbing1 != null) ...[
+                ListDetail(
+                  title: 'Pembimbing 1',
+                  subtitle: viewModel.pembimbing1?.nama ?? '',
+                  description: viewModel.pembimbing1?.nbm ?? '',
+                  type: ListDetailType.circle,
+                ),
+                const SizedBox(height: 16),
+              ],
+              if (viewModel.pembimbing2 != null) ...[
+                ListDetail(
+                  title: 'Pembimbing 2',
+                  subtitle: viewModel.pembimbing2?.nama ?? '',
+                  description: viewModel.pembimbing2?.nbm ?? '',
+                  type: ListDetailType.circle,
+                ),
+                const SizedBox(height: 16),
+              ],
               ListDetail(
                 title: 'Tanggal upload',
                 subtitle: viewModel.judul.tanggalUploadFormat,
@@ -109,18 +117,19 @@ class DetailsView extends ViewModelWidget<JudulDialogViewModel> {
             ],
           ),
         ),
-        Row(
-          children: [
-            Flexible(
-              child: ElevatedButton.icon(
-                onPressed: () => viewModel
-                    .changeJudulDialogType(JudulDialogType.initialDeteksi),
-                icon: const Icon(UniconsLine.sync_icon),
-                label: const Text('Deteksi judul'),
-              ),
-            )
-          ],
-        )
+        if (viewModel.judul.status == null)
+          Row(
+            children: [
+              Flexible(
+                child: ElevatedButton.icon(
+                  onPressed: () => viewModel
+                      .changeJudulDialogType(JudulDialogType.initialDeteksi),
+                  icon: const Icon(UniconsLine.sync_icon),
+                  label: const Text('Deteksi judul'),
+                ),
+              )
+            ],
+          )
       ],
     );
   }

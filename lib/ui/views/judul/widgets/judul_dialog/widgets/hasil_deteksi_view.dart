@@ -5,7 +5,6 @@ import 'package:pengajuan_judul_dashboard/enums/list_detail_type.dart';
 import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
 import 'package:pengajuan_judul_dashboard/themes/app_text.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/judul_dialog_view_model.dart';
-import 'package:pengajuan_judul_dashboard/ui/widgets/custom_chip.dart';
 import 'package:pengajuan_judul_dashboard/ui/widgets/custom_circle_nickname.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
@@ -114,7 +113,8 @@ class HasilDeteksiView extends ViewModelWidget<JudulDialogViewModel> {
           children: [
             Flexible(
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () =>
+                    viewModel.changeJudulDialogType(JudulDialogType.tolak),
                 icon: const Icon(UniconsLine.times_circle),
                 label: const Text('Tolak Judul'),
                 style: ElevatedButton.styleFrom(
@@ -127,7 +127,8 @@ class HasilDeteksiView extends ViewModelWidget<JudulDialogViewModel> {
             const SizedBox(width: 8),
             Flexible(
               child: ElevatedButton.icon(
-                onPressed: () {},
+                onPressed: () =>
+                    viewModel.changeJudulDialogType(JudulDialogType.terima),
                 icon: const Icon(UniconsLine.check_circle),
                 label: const Text('Terima Judul'),
               ),

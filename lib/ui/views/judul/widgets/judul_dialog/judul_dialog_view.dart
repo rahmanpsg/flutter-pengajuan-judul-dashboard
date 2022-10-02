@@ -46,11 +46,7 @@ class JudulDialogView extends StatelessWidget {
               duration: const Duration(milliseconds: 100),
               child: Container(
                 padding: const EdgeInsets.all(24),
-                child: model.type.isDetails
-                    ? const DetailsView()
-                    : model.type.isInitialDeteksi
-                        ? const InitialDeteksiView()
-                        : const HasilDeteksiView(),
+                child: model.view,
               ),
             ),
           ),

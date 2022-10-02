@@ -8,6 +8,11 @@ import 'package:pengajuan_judul_dashboard/models/judul_model.dart';
 import 'package:pengajuan_judul_dashboard/models/mahasiswa_model.dart';
 import 'package:pengajuan_judul_dashboard/services/judul_service.dart';
 import 'package:pengajuan_judul_dashboard/services/mahasiswa_service.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/details_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/hasil_deteksi_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/initial_deteksi_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/terima_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/tolak_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../../../../../app/app.locator.dart';
@@ -23,6 +28,7 @@ class JudulDialogViewModel extends CustomBaseViewModel {
 
   int get totalDataSet =>
       _judulService.list.where((x) => x.status == true).length;
+  List<DosenModel> get pembimbings => _dosenService.list;
 
   final formKey = GlobalKey<FormState>();
 
@@ -30,9 +36,18 @@ class JudulDialogViewModel extends CustomBaseViewModel {
   late final JudulModel judul;
 
   MahasiswaModel? mahasiswa;
-  List<DosenModel> pembimbings = [];
+  DosenModel? pembimbing1;
+  DosenModel? pembimbing2;
 
   JudulDialogType type = JudulDialogType.details;
+
+  Widget get view => [
+        const DetailsView(),
+        const InitialDeteksiView(),
+        const HasilDeteksiView(),
+        const TolakView(),
+        const TerimaView(),
+      ][type.index];
 
   late List<HasilDeteksiModel> hasilDeteksiList;
 
@@ -45,14 +60,12 @@ class JudulDialogViewModel extends CustomBaseViewModel {
       mahasiswa = _mahasiswaService.get(judul.mahasiswaId!);
     }
 
-    if (judul.pembimbingIds?.isNotEmpty == true) {
-      for (var id in judul.pembimbingIds!) {
-        final pembimbing = _dosenService.get(id);
+    if (judul.pembimbing1 != null) {
+      pembimbing1 = _dosenService.get(judul.pembimbing1!);
+    }
 
-        if (pembimbing != null) {
-          pembimbings.add(pembimbing);
-        }
-      }
+    if (judul.pembimbing2 != null) {
+      pembimbing2 = _dosenService.get(judul.pembimbing2!);
     }
   }
 
@@ -78,6 +91,72 @@ class JudulDialogViewModel extends CustomBaseViewModel {
       type = JudulDialogType.hasilDeteksi;
     } catch (e) {
       log.e(e);
+    }
+
+    setBusy(false);
+  }
+
+  void onTolak({String? koreksi}) async {
+    if (formKey.currentState?.validate() != true) return;
+
+    judul.status = false;
+    judul.koreksi = koreksi;
+
+    setBusy(true);
+
+    try {
+      await _judulService.save(judul);
+
+      navigationService.back();
+
+      await dialogService.showDialog(
+        title: 'Informasi',
+        description: 'Judul berhasil ditolak',
+        dialogPlatform: DialogPlatform.Material,
+      );
+    } catch (e) {
+      log.e(e);
+
+      dialogService.showDialog(
+        title: 'Informasi',
+        description: e.toString(),
+        dialogPlatform: DialogPlatform.Material,
+      );
+    }
+
+    setBusy(false);
+  }
+
+  void onTerima({
+    String? pembimbing1ID,
+    String? pembimbing2ID,
+  }) async {
+    if (formKey.currentState?.validate() != true) return;
+
+    judul.status = true;
+    judul.pembimbing1 = pembimbing1ID;
+    judul.pembimbing2 = pembimbing2ID;
+
+    setBusy(true);
+
+    try {
+      await _judulService.save(judul);
+
+      navigationService.back();
+
+      await dialogService.showDialog(
+        title: 'Informasi',
+        description: 'Judul berhasil diterima',
+        dialogPlatform: DialogPlatform.Material,
+      );
+    } catch (e) {
+      log.e(e);
+
+      dialogService.showDialog(
+        title: 'Informasi',
+        description: e.toString(),
+        dialogPlatform: DialogPlatform.Material,
+      );
     }
 
     setBusy(false);
