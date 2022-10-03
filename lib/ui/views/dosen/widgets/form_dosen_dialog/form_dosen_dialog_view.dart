@@ -1,8 +1,8 @@
 import 'package:flutter/material.dart';
 import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:pengajuan_judul_dashboard/models/dosen_model.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_text.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_colors.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_text.dart';
 import 'package:pengajuan_judul_dashboard/ui/widgets/custom_textfield_outline.dart';
 import 'package:pengajuan_judul_dashboard/utils/validators.dart';
 import 'package:stacked/stacked.dart';

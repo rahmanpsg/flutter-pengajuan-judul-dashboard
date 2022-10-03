@@ -3,7 +3,7 @@ import 'dart:ui';
 import 'package:collection/collection.dart';
 import 'package:intl/intl.dart';
 import 'package:pengajuan_judul_dashboard/models/file_data_model.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_colors.dart';
 import 'package:uuid/uuid.dart';
 
 class JudulModel {

@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_text.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_text.dart';
 import 'package:pengajuan_judul_dashboard/ui/widgets/custom_textfield_outline.dart';
 import 'package:pengajuan_judul_dashboard/utils/validators.dart';
 import 'package:stacked/stacked.dart';

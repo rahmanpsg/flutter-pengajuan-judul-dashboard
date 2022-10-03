@@ -1,5 +1,5 @@
 import 'package:flutter/material.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_colors.dart';
 
 import 'hasil_tfidf.dart';
 

@@ -4,7 +4,7 @@ import 'package:pengajuan_judul_dashboard/ui/views/table/table_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../../../themes/app_colors.dart';
+import '../../../../app/themes/app_colors.dart';
 import '../../../widgets/custom_chip.dart';
 import '../../table/models/column_item.dart';
 

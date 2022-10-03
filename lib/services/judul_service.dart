@@ -1,5 +1,4 @@
 import 'package:pengajuan_judul_dashboard/app/core/custom_base_service.dart';
-import 'package:pengajuan_judul_dashboard/models/api_response_model.dart';
 import 'package:pengajuan_judul_dashboard/models/hasil_deteksi_model/hasil_deteksi_model.dart';
 
 import '../app/api/api.dart';
