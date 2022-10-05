@@ -2,14 +2,14 @@ import 'package:flutter_hooks/flutter_hooks.dart';
 import 'package:flutter/material.dart';
 import 'package:pengajuan_judul_dashboard/models/judul_model.dart';
 import 'package:pengajuan_judul_dashboard/models/mahasiswa_model.dart';
-import 'package:pengajuan_judul_dashboard/themes/app_colors.dart';
+import 'package:pengajuan_judul_dashboard/app/themes/app_colors.dart';
 
 import 'package:stacked/stacked.dart';
 import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:unicons/unicons.dart';
 import '../../../../../enums/form_dialog_type.dart';
-import '../../../../../themes/app_text.dart';
+import '../../../../../app/themes/app_text.dart';
 import '../../../../../utils/validators.dart';
 import '../../../../widgets/custom_dropdown_search.dart';
 import '../../../../widgets/custom_textfield_outline.dart';

@@ -13,7 +13,7 @@ import 'app/app.router.dart';
 import 'firebase_options.dart';
 import 'services/dosen_service.dart';
 import 'services/judul_service.dart';
-import 'themes/app_theme.dart';
+import 'app/themes/app_theme.dart';
 
 void main() async {
   WidgetsFlutterBinding.ensureInitialized();

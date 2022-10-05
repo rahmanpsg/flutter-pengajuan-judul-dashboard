@@ -45,6 +45,8 @@ class ListDetail extends StatelessWidget {
             ],
             if (type == ListDetailType.text || type == ListDetailType.circle)
               Column(
+                mainAxisAlignment: MainAxisAlignment.start,
+                crossAxisAlignment: CrossAxisAlignment.start,
                 children: [
                   Text(
                     subtitle,

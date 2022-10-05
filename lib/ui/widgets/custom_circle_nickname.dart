@@ -1,6 +1,6 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/app_text.dart';
+import '../../app/themes/app_text.dart';
 
 class CustomCircleNickname extends StatelessWidget {
   final String name;

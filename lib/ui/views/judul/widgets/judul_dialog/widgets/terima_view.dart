@@ -7,8 +7,8 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:unicons/unicons.dart';
 
 import '../../../../../../enums/judul_dialog_type.dart';
-import '../../../../../../themes/app_colors.dart';
-import '../../../../../../themes/app_text.dart';
+import '../../../../../../app/themes/app_colors.dart';
+import '../../../../../../app/themes/app_text.dart';
 import '../../../../../widgets/custom_dropdown_search.dart';
 
 class TerimaView extends HookViewModelWidget<JudulDialogViewModel> {

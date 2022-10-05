@@ -4,7 +4,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../../themes/app_text.dart';
+import '../../../app/themes/app_text.dart';
 import './judul_view_model.dart';
 import 'widgets/judul_table.dart';
 

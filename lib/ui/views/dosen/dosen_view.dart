@@ -3,7 +3,7 @@ import 'package:responsive_builder/responsive_builder.dart';
 import 'package:stacked/stacked.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../../themes/app_text.dart';
+import '../../../app/themes/app_text.dart';
 import 'dosen_view_model.dart';
 import 'widgets/dosen_table.dart';
 

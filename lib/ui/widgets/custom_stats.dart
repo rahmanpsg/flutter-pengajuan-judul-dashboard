@@ -1,7 +1,7 @@
 import 'package:flutter/material.dart';
 
-import '../../themes/app_colors.dart';
-import '../../themes/app_text.dart';
+import '../../app/themes/app_colors.dart';
+import '../../app/themes/app_text.dart';
 
 class CustomStats extends StatelessWidget {
   final String text;
