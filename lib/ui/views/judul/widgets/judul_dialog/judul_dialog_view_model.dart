@@ -14,6 +14,7 @@ import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/wi
 import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/terima_view.dart';
 import 'package:pengajuan_judul_dashboard/ui/views/judul/widgets/judul_dialog/widgets/tolak_view.dart';
 import 'package:stacked_services/stacked_services.dart';
+import 'package:url_launcher/url_launcher.dart';
 
 import '../../../../../app/app.locator.dart';
 import '../../../../../services/dosen_service.dart';
@@ -75,7 +76,18 @@ class JudulDialogViewModel extends CustomBaseViewModel {
   }
 
   void onDownloadDocument() async {
-    // TODO: implement this
+    try {
+      final url = Uri.parse(judul.fileData!.url!);
+
+      await launchUrl(url, mode: LaunchMode.externalApplication);
+    } catch (e) {
+      log.e(e);
+      dialogService.showDialog(
+        title: 'Informasi',
+        description: 'File tidak ditemukan',
+        dialogPlatform: DialogPlatform.Material,
+      );
+    }
   }
 
   void onDeteksi(String K) async {
