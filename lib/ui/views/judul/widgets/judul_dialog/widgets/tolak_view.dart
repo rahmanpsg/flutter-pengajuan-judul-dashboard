@@ -17,6 +17,16 @@ class TolakView extends HookViewModelWidget<JudulDialogViewModel> {
   Widget buildViewModelWidget(
       BuildContext context, JudulDialogViewModel viewModel) {
     final koreksiController = useTextEditingController();
+
+    useEffect(() {
+      if (!viewModel.type.isTolak) return;
+
+      final deteksi = viewModel.hasilDeteksiList.first;
+
+      koreksiController.text =
+          'Judul anda mirip ${deteksi.persentase}% dengan judul : ${deteksi.judul}';
+    }, [viewModel.type]);
+
     return Column(
       mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
