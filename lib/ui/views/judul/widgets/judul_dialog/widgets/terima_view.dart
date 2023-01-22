@@ -10,6 +10,7 @@ import '../../../../../../enums/judul_dialog_type.dart';
 import '../../../../../../app/themes/app_colors.dart';
 import '../../../../../../app/themes/app_text.dart';
 import '../../../../../widgets/custom_dropdown_search.dart';
+import '../../../../../widgets/custom_textfield_outline.dart';
 
 class TerimaView extends HookViewModelWidget<JudulDialogViewModel> {
   const TerimaView({super.key});
@@ -19,6 +20,15 @@ class TerimaView extends HookViewModelWidget<JudulDialogViewModel> {
       BuildContext context, JudulDialogViewModel viewModel) {
     final selectedPembimbing1 = useState<String?>(null);
     final selectedPembimbing2 = useState<String?>(null);
+
+    final showKoreksi = useState(false);
+
+    final koreksiController = useTextEditingController();
+
+    useEffect(() {
+      koreksiController.clear();
+      return;
+    }, [showKoreksi.value]);
 
     return Column(
       mainAxisSize: MainAxisSize.min,
@@ -81,8 +91,25 @@ class TerimaView extends HookViewModelWidget<JudulDialogViewModel> {
                     value: val?.nama,
                     errorMessage: 'Silahkan pilih pembimbing 2'),
               ),
+              if (showKoreksi.value) ...[
+                const SizedBox(height: 16),
+                CustomTextFieldOutline(
+                  controller: koreksiController,
+                  hintText: 'Masukkan koreksi...',
+                  maxLines: 5,
+                  validator: (val) =>
+                      Validator.validateEmpty(value: val, field: 'koreksi'),
+                )
+              ]
             ],
           ),
+        ),
+        const SizedBox(height: 16),
+        CheckboxListTile(
+          value: showKoreksi.value,
+          onChanged: (v) => showKoreksi.value = v ?? false,
+          controlAffinity: ListTileControlAffinity.leading,
+          title: const Text('Tambahkan koreksi'),
         ),
         const SizedBox(height: 16),
         Row(
@@ -112,6 +139,8 @@ class TerimaView extends HookViewModelWidget<JudulDialogViewModel> {
                     : () => viewModel.onTerima(
                           pembimbing1ID: selectedPembimbing1.value,
                           pembimbing2ID: selectedPembimbing2.value,
+                          koreksi:
+                              showKoreksi.value ? koreksiController.text : null,
                         ),
                 icon: viewModel.isBusy
                     ? const SizedBox(

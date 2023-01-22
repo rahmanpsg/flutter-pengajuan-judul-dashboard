@@ -1,4 +1,5 @@
 import 'package:pengajuan_judul_dashboard/app/app.logger.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/mahasiswa/daftar_judul_dialog/daftar_judul_dialog_view.dart';
 import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
@@ -15,9 +16,46 @@ class MahasiswaViewModel extends ReactiveViewModel {
   final _dialogService = locator<DialogService>();
   final _mahasiswaService = locator<MahasiswaService>();
 
-  List<MahasiswaModel> get list => _mahasiswaService.list;
+  bool isFiltered = false;
+
+  final _filteredItems = <MahasiswaModel>[];
+  List<MahasiswaModel> get _items => _mahasiswaService.list;
+
+  List<MahasiswaModel> get items =>
+      isFiltered ? _filteredItems : _mahasiswaService.list;
 
   Future<void> init() async {}
+
+  void onSearch(String value) {
+    isFiltered = false;
+    _filteredItems.clear();
+
+    if (value.isEmpty) {
+      notifyListeners();
+      return;
+    }
+
+    isFiltered = true;
+    final filteredItems = _items
+        .where(
+          (item) => (item.nama!.toLowerCase().contains(value.toLowerCase()) ||
+              (item.nim?.toLowerCase().contains(value.toLowerCase()) ?? false)),
+        )
+        .toList();
+
+    _filteredItems.addAll(filteredItems);
+
+    log.d(_filteredItems);
+
+    notifyListeners();
+  }
+
+  void openDetails(MahasiswaModel mahasiswa) {
+    _dialogService.showCustomDialog(
+      variant: DialogType.daftarJudulDialogView,
+      data: DaftarJudulDialogData(mahasiswa: mahasiswa),
+    );
+  }
 
   /// [mahasiswa] set null if you need to add new the data
   void onAddOrEdit(MahasiswaModel? mahasiswa) async {

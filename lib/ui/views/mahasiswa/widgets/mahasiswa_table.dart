@@ -16,13 +16,13 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
       headerColor: secondaryColor,
       columns: [
         ColumnItem(value: "#", width: 50),
-        ColumnItem(value: "Nama", width: 500),
+        ColumnItem(value: "Nama", width: 510),
         ColumnItem(value: "Nim", width: 250),
         ColumnItem(value: "Angkatan", width: 200),
         // ColumnItem(value: "Status", width: 265),
-        ColumnItem(value: "Aksi", width: 130),
+        ColumnItem(value: "Aksi", width: 120),
       ],
-      rows: viewModel.list
+      rows: viewModel.items
           .asMap()
           .entries
           .map(
@@ -39,6 +39,20 @@ class MahasiswaTable extends ViewModelWidget<MahasiswaViewModel> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
+                    Tooltip(
+                      message: "Lihat",
+                      preferBelow: false,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => viewModel.openDetails(entry.value),
+                          child: const Icon(
+                            UniconsLine.eye,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
                     Tooltip(
                       message: "Edit",
                       preferBelow: false,

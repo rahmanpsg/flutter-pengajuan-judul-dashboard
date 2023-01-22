@@ -3,7 +3,7 @@ import 'package:pengajuan_judul_dashboard/app/app.logger.dart';
 import 'package:pengajuan_judul_dashboard/app/core/custom_base_view_model.dart';
 import 'package:pengajuan_judul_dashboard/enums/form_dialog_type.dart';
 import 'package:pengajuan_judul_dashboard/models/dosen_model.dart';
-import 'package:pengajuan_judul_dashboard/ui/views/dosen/widgets/form_dosen_dialog/form_dosen_dialog_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/dosen/form_dosen_dialog/form_dosen_dialog_view.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 class FormDosenDialogViewModel extends CustomBaseViewModel {

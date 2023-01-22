@@ -18,10 +18,10 @@ class DosenTable extends ViewModelWidget<DosenViewModel> {
         ColumnItem(value: "#", width: 50),
         ColumnItem(value: "Nama", width: 310),
         ColumnItem(value: "Nbm", width: 220),
-        ColumnItem(value: "Jabatan", width: 450),
-        ColumnItem(value: "Aksi", width: 100),
+        ColumnItem(value: "Jabatan", width: 430),
+        ColumnItem(value: "Aksi", width: 120),
       ],
-      rows: viewModel.list
+      rows: viewModel.items
           .asMap()
           .entries
           .map(
@@ -34,20 +34,20 @@ class DosenTable extends ViewModelWidget<DosenViewModel> {
                 Row(
                   mainAxisAlignment: MainAxisAlignment.spaceAround,
                   children: [
-                    // Tooltip(
-                    //   message: "Lihat",
-                    //   preferBelow: false,
-                    //   child: MouseRegion(
-                    //     cursor: SystemMouseCursors.click,
-                    //     child: GestureDetector(
-                    //       // onTap: () => viewModel.onAddOrEdit(entry.value),
-                    //       child: const Icon(
-                    //         UniconsLine.eye,
-                    //         size: 20,
-                    //       ),
-                    //     ),
-                    //   ),
-                    // ),
+                    Tooltip(
+                      message: "Lihat",
+                      preferBelow: false,
+                      child: MouseRegion(
+                        cursor: SystemMouseCursors.click,
+                        child: GestureDetector(
+                          onTap: () => viewModel.openDetails(entry.value),
+                          child: const Icon(
+                            UniconsLine.eye,
+                            size: 20,
+                          ),
+                        ),
+                      ),
+                    ),
                     Tooltip(
                       message: "Edit",
                       preferBelow: false,

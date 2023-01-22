@@ -24,6 +24,7 @@ class ListDetail extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return Column(
+      mainAxisSize: MainAxisSize.min,
       mainAxisAlignment: MainAxisAlignment.start,
       crossAxisAlignment: CrossAxisAlignment.start,
       children: [
@@ -35,37 +36,34 @@ class ListDetail extends StatelessWidget {
           ),
         ),
         const SizedBox(height: 8),
-        Row(
-          children: [
-            if (type == ListDetailType.chip)
-              CustomChip(text: subtitle, color: color!),
-            if (type == ListDetailType.circle) ...[
-              CustomCircleNickname(name: subtitle),
-              const SizedBox(width: 8),
-            ],
-            if (type == ListDetailType.text || type == ListDetailType.circle)
-              Column(
-                mainAxisAlignment: MainAxisAlignment.start,
-                crossAxisAlignment: CrossAxisAlignment.start,
-                children: [
-                  Text(
-                    subtitle,
-                    style: regularTextStyle.copyWith(
-                      fontSize: 16,
-                    ),
+        ListTile(
+          contentPadding: EdgeInsets.zero,
+          minVerticalPadding: 0,
+          dense: true,
+          leading: type.isText
+              ? null
+              : type.isChip
+                  ? IntrinsicWidth(
+                      child: CustomChip(text: subtitle, color: color!))
+                  : CustomCircleNickname(name: subtitle),
+          title: type.isChip
+              ? null
+              : Text(
+                  subtitle,
+                  style: regularTextStyle.copyWith(
+                    fontSize: 16,
                   ),
-                  if (description != null)
-                    Text(
-                      description!,
-                      style: regularTextStyle.copyWith(
-                        color: fontDescriptionGreyColor,
-                        fontSize: 16,
-                      ),
-                    ),
-                ],
-              )
-          ],
-        )
+                ),
+          subtitle: description == null
+              ? null
+              : Text(
+                  description!,
+                  style: regularTextStyle.copyWith(
+                    color: fontDescriptionGreyColor,
+                    fontSize: 16,
+                  ),
+                ),
+        ),
       ],
     );
   }

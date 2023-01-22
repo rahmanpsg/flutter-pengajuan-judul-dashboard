@@ -6,6 +6,7 @@ import 'package:unicons/unicons.dart';
 
 import '../../../app/themes/app_text.dart';
 
+import '../../widgets/custom_search_text_field.dart';
 import './mahasiswa_view_model.dart';
 import 'widgets/mahasiswa_table.dart';
 
@@ -14,6 +15,8 @@ class MahasiswaView extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
+    final width = MediaQuery.of(context).size.width;
+
     return ViewModelBuilder<MahasiswaViewModel>.nonReactive(
       viewModelBuilder: () => MahasiswaViewModel(),
       onModelReady: (MahasiswaViewModel model) async {
@@ -46,13 +49,25 @@ class MahasiswaView extends StatelessWidget {
                 const SizedBox(height: 32),
                 const Divider(),
                 const SizedBox(height: 16),
-                SizedBox(
-                  width: 200,
-                  child: OutlinedButton.icon(
-                    onPressed: () => model.onAddOrEdit(null),
-                    icon: const Icon(UniconsLine.plus),
-                    label: const Text("Tambah data"),
-                  ),
+                Row(
+                  mainAxisAlignment: MainAxisAlignment.spaceBetween,
+                  children: [
+                    SizedBox(
+                      width: width * 0.14,
+                      child: OutlinedButton.icon(
+                        onPressed: () => model.onAddOrEdit(null),
+                        icon: const Icon(UniconsLine.plus),
+                        label: const Text("Tambah data"),
+                      ),
+                    ),
+                    SizedBox(
+                      width: width * 0.3,
+                      child: CustomSearchTextField(
+                        hintText: 'Cari',
+                        onSearch: model.onSearch,
+                      ),
+                    ),
+                  ],
                 ),
                 const SizedBox(height: 8),
                 const Flexible(

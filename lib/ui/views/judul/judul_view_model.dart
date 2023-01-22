@@ -18,10 +18,17 @@ class JudulViewModel extends ReactiveViewModel {
 
   int tabIndexSelected = 0;
 
-  List<JudulModel> get list => _judulService.list;
+  bool isFiltered = false;
+
+  final _filteredItems = <JudulModel>[];
+  List<JudulModel> get _items => _judulService.list;
+
+  List<JudulModel> get items =>
+      isFiltered ? _filteredItems : _judulService.list;
+
   List<JudulModel> get listFilter => tabIndexSelected == 0
-      ? list
-      : list
+      ? items
+      : items
           .where((x) =>
               x.status ==
               (tabIndexSelected == 1
@@ -31,20 +38,44 @@ class JudulViewModel extends ReactiveViewModel {
                       : false))
           .toList();
 
-  int get total => list.length;
-  int get totalBelumDiverifikasi => list.where((x) => x.status == null).length;
-  int get totalDiterima => list.where((x) => x.status == true).length;
-  int get totalDitolak => list.where((x) => x.status == false).length;
+  int get total => _items.length;
+  int get totalBelumDiverifikasi =>
+      _items.where((x) => x.status == null).length;
+  int get totalDiterima => _items.where((x) => x.status == true).length;
+  int get totalDitolak => _items.where((x) => x.status == false).length;
 
   Future<void> init() async {}
+
+  void onSearch(String value) {
+    isFiltered = false;
+    _filteredItems.clear();
+
+    if (value.isEmpty) {
+      notifyListeners();
+      return;
+    }
+
+    isFiltered = true;
+    final filteredItems = _items
+        .where(
+          (item) => (item.judul!.toLowerCase().contains(value.toLowerCase())),
+        )
+        .toList();
+
+    _filteredItems.addAll(filteredItems);
+
+    log.d(_filteredItems);
+
+    notifyListeners();
+  }
 
   void setTabIndexSelected(int idx) {
     tabIndexSelected = idx;
     notifyListeners();
   }
 
-  void openDetails(JudulModel judul) async {
-    final response = await _dialogService.showCustomDialog(
+  void openDetails(JudulModel judul) {
+    _dialogService.showCustomDialog(
       variant: DialogType.judulDialogView,
       data: JudulDialogData(judul: judul),
     );

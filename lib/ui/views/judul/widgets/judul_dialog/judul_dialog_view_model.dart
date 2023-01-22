@@ -142,12 +142,14 @@ class JudulDialogViewModel extends CustomBaseViewModel {
   void onTerima({
     String? pembimbing1ID,
     String? pembimbing2ID,
+    String? koreksi,
   }) async {
     if (formKey.currentState?.validate() != true) return;
 
     judul.status = true;
     judul.pembimbing1 = pembimbing1ID;
     judul.pembimbing2 = pembimbing2ID;
+    judul.koreksi = koreksi;
 
     setBusy(true);
 

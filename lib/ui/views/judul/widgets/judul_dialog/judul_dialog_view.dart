@@ -4,9 +4,6 @@ import 'package:stacked/stacked.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import 'judul_dialog_view_model.dart';
-import 'widgets/details_view.dart';
-import 'widgets/hasil_deteksi_view.dart';
-import 'widgets/initial_deteksi_view.dart';
 
 class JudulDialogData {
   final JudulModel judul;

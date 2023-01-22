@@ -10,7 +10,7 @@ import 'package:stacked_hooks/stacked_hooks.dart';
 import 'package:stacked_services/stacked_services.dart';
 import 'package:unicons/unicons.dart';
 
-import '../../../../../enums/form_dialog_type.dart';
+import '../../../../enums/form_dialog_type.dart';
 import './form_dosen_dialog_view_model.dart';
 
 class FormDosenDialogData {

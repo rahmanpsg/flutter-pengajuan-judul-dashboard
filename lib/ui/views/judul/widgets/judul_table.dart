@@ -20,9 +20,9 @@ class JudulTable extends ViewModelWidget<JudulViewModel> {
       columns: [
         ColumnItem(value: "#", width: 50),
         ColumnItem(value: "Judul", width: 520),
-        ColumnItem(value: "Tanggal", width: 200),
+        ColumnItem(value: "Tanggal", width: 180),
         ColumnItem(value: "Status", width: 265),
-        ColumnItem(value: "Aksi", width: 100),
+        ColumnItem(value: "Aksi", width: 120),
       ],
       rows: viewModel.listFilter
           .asMap()

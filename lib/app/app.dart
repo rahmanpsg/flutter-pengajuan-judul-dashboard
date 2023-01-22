@@ -1,13 +1,15 @@
 import 'package:pengajuan_judul_dashboard/services/judul_service.dart';
-import 'package:pengajuan_judul_dashboard/ui/views/dosen/widgets/form_dosen_dialog/form_dosen_dialog_view.dart';
+import 'package:pengajuan_judul_dashboard/ui/views/dosen/form_dosen_dialog/form_dosen_dialog_view.dart';
 import 'package:stacked/stacked_annotations.dart';
 import 'package:stacked_services/stacked_services.dart';
 
 import '../services/auth_service.dart';
 import '../services/dosen_service.dart';
 import '../services/mahasiswa_service.dart';
+import '../ui/views/dosen/daftar_bimbingan_dialog/daftar_bimbingan_dialog_view.dart';
 import '../ui/views/judul/widgets/judul_dialog/judul_dialog_view.dart';
 import '../ui/views/judul/widgets/form_judul_dialog/form_judul_dialog_view.dart';
+import '../ui/views/mahasiswa/daftar_judul_dialog/daftar_judul_dialog_view.dart';
 import '../ui/views/mahasiswa/widgets/form_mahasiswa_dialog/form_mahasiswa_dialog_view.dart';
 import '../ui/shared/year_picker_dialog/year_picker_dialog_view.dart';
 import '../ui/views/dashboard/dashboard_view.dart';
@@ -36,6 +38,8 @@ import 'api/firebase_storage_api.dart';
     StackedDialog(classType: FormDosenDialogView),
     StackedDialog(classType: FormJudulDialogView),
     StackedDialog(classType: JudulDialogView),
+    StackedDialog(classType: DaftarJudulDialogView),
+    StackedDialog(classType: DaftarBimbinganDialogView),
   ],
   dependencies: [
     LazySingleton(classType: NavigationService),
